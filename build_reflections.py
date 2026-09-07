@@ -23,6 +23,47 @@ ORDER = [
 ]
 START_NUM = 4  # existing site already has Reflection 01–03
 
+# Where each claim sits, shown in the .apphead. Labels must be one of the five
+# defined in Roots -> "How Roots works": consensus, strong majority, debated,
+# our read, rejected.
+STANDING = {
+    'whose-world': 'Genesis 1 read against ANE cosmology [consensus] &middot; a direct rebuttal of <i>Enuma Elish</i> [debated] &middot; <i>tehom</i> borrowed from Tiamat [rejected]',
+    'frame': '<i>raqia&#703;</i> understood as a solid dome [consensus] &middot; the ANE three-tier cosmos [consensus] &middot; Genesis describes rather than defends it [our read]',
+    'verse-bent': 'the curse falls on Canaan, not Ham [consensus] &middot; the racial reading is a later construction [consensus] &middot; the nature of Ham&rsquo;s offence [debated]',
+    'moabite': 'Ezra&ndash;Nehemiah dissolved foreign marriages [consensus] &middot; Ruth and Jonah as canonical counter-voices [strong majority] &middot; written to answer Ezra [debated]',
+    'two-drafts': 'Chronicles rewrites Samuel&ndash;Kings with a consistent tendency [consensus] &middot; <i>&#347;&#257;&#7789;&#257;n</i> as a proper name in 1 Chr 21:1 [debated]',
+    'rule-breaks': 'Job 21 denies strict retribution [consensus] &middot; Proverbs&rsquo; sayings were never guarantees [consensus] &middot; the wisdom books as a preserved debate [strong majority]',
+    'third-way': 'the passage rejects retaliation in kind [consensus] &middot; the three examples are active, not passive [strong majority] &middot; Wink&rsquo;s specific reconstructions [debated]',
+    'life-age': '<i>ai&#333;nios</i> often means &ldquo;of the Age to Come&rdquo; [consensus] &middot; it also carries &ldquo;unending&rdquo; [consensus] &middot; the duration of final punishment [debated]',
+    'luke-checked': 'the Gospels are textually anonymous [consensus] &middot; the traditional names are the only ones attested [consensus] &middot; whether the names were attached late [debated]',
+    'couldnt-lose': 'not part of John&rsquo;s original text [consensus] &middot; preserves genuine early Jesus tradition [strong majority] &middot; still Scripture, as most traditions hold [our read]',
+    'dead-rise': '<i>apant&#275;sis</i> pictures a welcoming party, not an evacuation [strong majority] &middot; one public parousia [strong majority] &middot; the pretrib system is 19th-century [consensus]',
+    'church-shape': 'the Pastorals describe a more structured church than the undisputed seven [consensus] &middot; non-Pauline authorship [strong majority] &middot; Pauline authorship via a secretary [debated]',
+}
+
+# The word study or text history that shares this passage, as (section, id).
+# Rendered as the "Also on this passage" block. Keep in step with the same map
+# in audit_pass3.py.
+XREF = {
+    'whose-world': [('provenance', 'prov-genesis', 'Genesis 1 and its neighbours')],
+    'frame': [('roots', 'roots-raqia', 'Firmament'), ('provenance', 'prov-genesis', 'Genesis 1 and its neighbours')],
+    'verse-bent': [('provenance', 'prov-ham', 'The verse they bent')],
+    'moabite': [('provenance', 'prov-ruth', 'The canon arguing with itself')],
+    'two-drafts': [('provenance', 'prov-chronicles', 'Two drafts of one story')],
+    'rule-breaks': [('provenance', 'prov-wisdom', 'When the rule breaks')],
+    'third-way': [('provenance', 'prov-cheek', 'Turn the other cheek')],
+    'life-age': [('roots', 'roots-aionios', 'Eternal')],
+    'luke-checked': [('provenance', 'prov-gospels', 'Who wrote the Gospels?')],
+    'couldnt-lose': [('provenance', 'prov-adultery', 'The story that floats')],
+    'dead-rise': [('provenance', 'prov-rapture', 'Where the rapture came from'), ('roots', 'roots-sheol', 'Hell')],
+    'church-shape': [('provenance', 'prov-paul', 'Which letters are Paul&rsquo;s?')],
+}
+
+# Every entry carries a revision date.
+REVISED = ("Revised 6 September 2026",
+           "Revisado el 6 de septiembre de 2026",
+           "Revisado em 6 de setembro de 2026")
+
 # sermons whose Notes carry no parsable sources bullet; taken from their research note
 SOURCES_OVERRIDE = {
     "whose-world": ("*Enuma Elish* (Lambert, *Babylonian Creation Myths*; Heidel, "
@@ -127,9 +168,15 @@ def build(stem, art_id, passage, num):
     out += ['        <div class="apphead">',
             f'          <span class="wide"><k>Text</k>{esc(passage)}</span>',
             '          <span><k>Form</k>five movements</span>',
-            f'          <span><k>Reading</k>~{mins} min</span>',
-            '        </div>',
+            f'          <span><k>Reading</k>~{mins} min</span>']
+    if STANDING.get(art_id):
+        out.append(f'          <span class="wide"><k>Standing</k>{STANDING[art_id]}</span>')
+    out += ['        </div>',
             '',
+            '        <p class="entrydate">'
+            + "".join(f'<span class="l-{c}">{t}</span>'
+                      for c, t in zip(("en", "es", "pt"), REVISED))
+            + '</p>',
             '        <div class="body">']
 
     for n, head, chunk in movements:
@@ -138,6 +185,8 @@ def build(stem, art_id, passage, num):
             para = unwrap(para)
             if not para:
                 continue
+            if re.fullmatch(r"[-*_]\s*(?:[-*_]\s*){2,}", para):
+                continue  # markdown horizontal rule, not a paragraph
             # a wholly-bold paragraph, or a lead-in ending in one long bold
             # sentence, is the big-idea beat -> pull quote
             whole = re.fullmatch(r"\*\*(.+)\*\*", para, re.S)
@@ -160,6 +209,28 @@ def build(stem, art_id, passage, num):
         if src:
             out.append(f'          <p class="sources"><k>Sources</k>{inline(src)}</p>')
         out.append('        </section>')
+    if XREF.get(art_id):
+        out += ['        <aside class="xref">',
+                '          <h4><span class="l-en">Also on this passage</span>'
+                '<span class="l-es">Tambi&eacute;n sobre este pasaje</span>'
+                '<span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>',
+                '          <ul>']
+        for sec, tid, label in XREF[art_id]:
+            out.append(f'          <li><span class="sec">{sec.title()}</span>'
+                       f'<a href="#{sec}/{tid}" data-xsec="{sec}" data-xart="{tid}">'
+                       f'{label}</a></li>')
+        out += ['          </ul>',
+                '          <p class="why">'
+                '<span class="l-en">Same passage, same worksheet, different job. '
+                'Reflections preaches it, Roots takes a single word apart, '
+                'Provenance asks where the text came from.</span>'
+                '<span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto '
+                'trabajo. Reflections lo predica, Roots desarma una palabra, '
+                'Provenance pregunta de d&oacute;nde vino el texto.</span>'
+                '<span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho '
+                'diferente. Reflections prega, Roots desmonta uma palavra, Provenance '
+                'pergunta de onde o texto veio.</span></p>',
+                '        </aside>']
     out.append('      </article>')
     return "\n".join(out), title, mins
 

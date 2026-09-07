@@ -601,6 +601,148 @@
     .toc-item[aria-current="true"]{border-left-color:transparent;border-bottom-color:var(--accent)}
     main{max-width:none;padding-bottom:80px}
   }
+  /* ---------- entry date (A5) ---------- */
+  .entrydate{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.66rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--faint);
+    text-indent:0;
+    margin:0 0 1.6rem;
+  }
+
+  /* ---------- cross references (A1) ---------- */
+  .xref{
+    margin:2.8rem 0 0;
+    padding:1.15rem 1.4rem 1.25rem;
+    border:1px solid var(--rule);
+    border-radius:2px;
+  }
+  .xref h4{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.66rem;
+    font-weight:500;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--faint);
+    margin:0 0 .85rem;
+  }
+  .xref ul{list-style:none;margin:0;padding:0}
+  .xref li{padding:.32rem 0;text-indent:0;line-height:1.45}
+  .xref .sec{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.62rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+    display:inline-block;
+    min-width:9.2em;
+  }
+  .xref a{font-size:.99rem}
+  .xref .why{
+    margin:.9rem 0 0;
+    font-style:italic;
+    font-size:.9rem;
+    line-height:1.5;
+    color:var(--faint);
+    text-indent:0;
+  }
+
+  /* ---------- next step (A2) ---------- */
+  .nextstep{
+    margin:2.8rem 0 0;
+    padding:1.5rem 1.7rem 1.6rem;
+    background:var(--accent-soft);
+    border:1px solid var(--rule);
+    border-radius:2px;
+  }
+  .nextstep h4{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.66rem;
+    font-weight:500;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 .9rem;
+  }
+  .nextstep p{text-indent:0;font-size:.99rem;line-height:1.55;color:var(--ink-soft);margin:0}
+  .nextstep p + p{margin-top:.7em}
+
+  /* ---------- untranslated notice (C2) ---------- */
+  .xlate{
+    margin:0 0 2rem;
+    padding:.85rem 1.1rem;
+    border:1px dashed var(--rule);
+    border-radius:2px;
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.72rem;
+    line-height:1.65;
+    color:var(--faint);
+    text-indent:0;
+  }
+  :root:not([data-elang="es"]):not([data-elang="pt"]) .xlate{display:none}
+
+  /* ---------- search (C5) ---------- */
+  .searchwrap{display:flex;align-items:center;padding-bottom:8px}
+  .searchwrap input{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.7rem;
+    letter-spacing:.08em;
+    color:var(--ink);
+    background:none;
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:5px 9px;
+    width:11rem;
+    max-width:40vw;
+  }
+  .searchwrap input::placeholder{color:var(--faint);text-transform:uppercase;letter-spacing:.14em}
+  .searchwrap input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--faint)}
+  .wrap-wide{grid-template-columns:1fr}
+  .wrap-wide main{max-width:var(--measure)}
+  .qhit{
+    display:block;
+    padding:1rem 0;
+    border-top:1px solid var(--rule);
+    text-indent:0;
+  }
+  .qhit .sec{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.62rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:.2rem;
+  }
+  .qhit .t{display:block;font-size:1.12rem;line-height:1.3;color:var(--ink)}
+  .qhit:hover .t{color:var(--accent)}
+  .qhit .snip{
+    display:block;
+    margin-top:.3rem;
+    font-size:.93rem;
+    line-height:1.5;
+    color:var(--ink-soft);
+  }
+  .qhit .snip b{color:var(--ink);background:var(--accent-soft);font-weight:500}
+
+  /* ---------- print (C6) ---------- */
+  @media print{
+    .masthead .toggle,.sectionbar,.sectionnote,.contents,.siteftr,
+    .xref,.availability,.xlate,#view-search{display:none!important}
+    body{background:#fff;color:#000;font-size:11pt;line-height:1.5}
+    .wrap{display:block;padding:0;max-width:none}
+    main{max-width:none;padding:0}
+    .masthead{padding:0 0 12pt;border-bottom:1px solid #999}
+    article[hidden]{display:none!important}
+    h1{font-size:20pt}
+    .body h2{page-break-after:avoid;font-size:13pt}
+    .pull{font-size:12pt;page-break-inside:avoid}
+    .apparatus{page-break-inside:avoid;background:none;border:1px solid #999;margin-top:18pt}
+    .epigraph,.apphead,.entrydate{color:#000}
+    a{color:#000;text-decoration:none}
+  }
 </style>
 
 <div class="masthead">
@@ -614,13 +756,16 @@
 </div>
 
 <nav class="sectionbar" aria-label="Sections">
-  <div class="tabs">
-    <button class="tab" type="button" data-section="reflections">Reflections</button>
-    <button class="tab" type="button" data-section="encounter">Encounter</button>
-    <button class="tab" type="button" data-section="roots">Roots</button>
-    <button class="tab" type="button" data-section="provenance">Provenance</button>
-    <button class="tab" type="button" data-section="wonder">Wonder</button>
-    <button class="tab" type="button" data-section="colophon">Colophon</button>
+  <div class="tabs" role="tablist">
+    <button class="tab" type="button" role="tab" data-section="reflections">Reflections</button>
+    <button class="tab" type="button" role="tab" data-section="encounter">Encounter</button>
+    <button class="tab" type="button" role="tab" data-section="roots">Roots</button>
+    <button class="tab" type="button" role="tab" data-section="provenance">Provenance</button>
+    <button class="tab" type="button" role="tab" data-section="colophon">Colophon</button>
+  </div>
+  <div class="searchwrap">
+    <input id="q" type="search" autocomplete="off" spellcheck="false"
+           aria-label="Search Marginalia" placeholder="Search">
   </div>
   <div class="langpick" hidden>
     <button type="button" data-lang="en">EN</button><span class="sep">/</span><button type="button" data-lang="es">ES</button><span class="sep">/</span><button type="button" data-lang="pt">PT</button>
@@ -740,6 +885,9 @@
             <span class="wide"><k>Standing</k>quotes Ps 37:11 [consensus] &middot; <i>praus</i> is not &ldquo;weak&rdquo; [consensus] &middot; war-horse etymology [rejected]</span>
           </div>
 
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
+
           <div class="body">
             <h2><span class="mv">1</span> Hook &amp; Big Idea</h2>
             <p>If you put the word &ldquo;meek&rdquo; on a dating profile, nobody swipes right. We hear it as a personality flaw. Meek: quiet, harmless, easily pushed around. The kind of person who lets the world happen to them.</p>
@@ -795,6 +943,8 @@
             <span><k>Forma</k>cinco movimientos</span>
             <span><k>Lectura</k>~12 min</span>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>En resumen</h2>
             <p>&laquo;Manso&raquo; hoy suena a d&eacute;bil, y no es lo que Jes&uacute;s quiso decir. La palabra griega es <i>praus</i>: la persona que se enoja por lo correcto, en el momento correcto, en la medida correcta. Es la misma palabra que el Antiguo Testamento usa para Mois&eacute;s, el hombre que se par&oacute; frente al fara&oacute;n. Y la frase entera es una cita: Jes&uacute;s est&aacute; repitiendo el Salmo 37, escrito para gente que ve ganar a los que hacen trampa. Dicho a una multitud bajo ocupaci&oacute;n romana, &laquo;heredar la tierra&raquo; sonaba casi pol&iacute;tico. La mansedumbre no es la ausencia de poder; si no tuvieras poder, no te costar&iacute;a nada. Es tener cargada la frase que gana y hiere, y bajarla.</p>
@@ -811,12 +961,21 @@
             <span><k>Forma</k>cinco movimentos</span>
             <span><k>Leitura</k>~12 min</span>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Em resumo</h2>
             <p>&laquo;Manso&raquo; hoje soa como fraco, e n&atilde;o &eacute; isso que Jesus quis dizer. A palavra grega &eacute; <i>praus</i>: a pessoa que se irrita pela coisa certa, na hora certa, na medida certa. &Eacute; a mesma palavra que o Antigo Testamento usa para Mois&eacute;s, o homem que enfrentou o fara&oacute;. E a frase inteira &eacute; uma cita&ccedil;&atilde;o: Jesus est&aacute; repetindo o Salmo 37, escrito para gente que v&ecirc; os desonestos vencerem. Dito a uma multid&atilde;o sob ocupa&ccedil;&atilde;o romana, &laquo;herdar a terra&raquo; soava quase pol&iacute;tico. A mansid&atilde;o n&atilde;o &eacute; a aus&ecirc;ncia de poder; se voc&ecirc; n&atilde;o tivesse poder, n&atilde;o lhe custaria nada. &Eacute; ter carregada a frase que vence e fere, e abaix&aacute;-la.</p>
           </div>
           <p class="availability">O texto completo est&aacute; dispon&iacute;vel por enquanto em ingl&ecirc;s. <button type="button" data-setlang="en">Ler em ingl&ecirc;s</button></p>
         </div>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Roots</span><a href="#roots/roots-praus" data-xsec="roots" data-xart="roots-praus">Meek</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="dust" hidden>
@@ -830,6 +989,9 @@
             <span><k>Reading</k>~13 min</span>
             <span class="wide"><k>Standing</k><i>nephesh chayyah</i> = &ldquo;living creature&rdquo; [consensus] &middot; &ldquo;immortal soul&rdquo; a later overlay [consensus] &middot; Steiner (2015) dissent noted</span>
           </div>
+
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
           <div class="body">
             <h2><span class="mv">1</span> Hook &amp; Big Idea</h2>
@@ -894,6 +1056,8 @@
             <span><k>Forma</k>cinco movimientos</span>
             <span><k>Lectura</k>~13 min</span>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>En resumen</h2>
             <p>&laquo;Recuerda que eres polvo.&raquo; No es un insulto: es una cita del G&eacute;nesis, y ah&iacute; no se dice junto a una tumba, sino al principio, como el relato de c&oacute;mo fuiste hecho. Polvo, y aliento. La frase hebrea que sigue, <i>nefesh jayy&aacute;</i>, &laquo;ser viviente&raquo;, es exactamente la misma que G&eacute;nesis 1 usa para los peces, las aves y los animales. No te entregaron un alma como equipo aparte: te volviste un ser vivo cuando entr&oacute; el aliento. La idea del alma inmortal atrapada en el cuerpo es real, pero es griega, y entr&oacute; al pensamiento cristiano en parte por la traducci&oacute;n. Eso cambia de d&oacute;nde viene la esperanza: no de una parte tuya que la muerte no alcanza, sino del Dios que sopl&oacute; la primera vez y prometi&oacute; soplar otra vez.</p>
@@ -910,12 +1074,21 @@
             <span><k>Forma</k>cinco movimentos</span>
             <span><k>Leitura</k>~13 min</span>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Em resumo</h2>
             <p>&laquo;Lembra-te de que &eacute;s p&oacute;.&raquo; N&atilde;o &eacute; um insulto: &eacute; uma cita&ccedil;&atilde;o do G&ecirc;nesis, e ali ela n&atilde;o &eacute; dita diante de um t&uacute;mulo, mas no come&ccedil;o, como o relato de como voc&ecirc; foi feito. P&oacute;, e sopro. A express&atilde;o hebraica que vem depois, <i>nefesh chayyah</i>, &laquo;ser vivente&raquo;, &eacute; exatamente a mesma que G&ecirc;nesis 1 usa para os peixes, as aves e os animais. Voc&ecirc; n&atilde;o recebeu uma alma como equipamento &agrave; parte: voc&ecirc; se tornou um ser vivo quando o sopro entrou. A ideia da alma imortal presa no corpo &eacute; real, mas &eacute; grega, e entrou no pensamento crist&atilde;o em parte pela tradu&ccedil;&atilde;o. Isso muda de onde vem a esperan&ccedil;a: n&atilde;o de uma parte sua que a morte n&atilde;o alcan&ccedil;a, mas do Deus que soprou a primeira vez e prometeu soprar de novo.</p>
           </div>
           <p class="availability">O texto completo est&aacute; dispon&iacute;vel por enquanto em ingl&ecirc;s. <button type="button" data-setlang="en">Ler em ingl&ecirc;s</button></p>
         </div>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Roots</span><a href="#roots/roots-nephesh" data-xsec="roots" data-xart="roots-nephesh">Soul</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="psalm88" hidden>
@@ -929,6 +1102,9 @@
             <span><k>Reading</k>~13 min</span>
             <span class="wide"><k>Standing</k>the only lament with no turn [consensus] &middot; <i>Sheol</i> = the grave, not &ldquo;hell&rdquo; [consensus]</span>
           </div>
+
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
           <div class="body">
             <h2><span class="mv">1</span> Hook &amp; Big Idea</h2>
@@ -995,6 +1171,8 @@
             <span><k>Forma</k>cinco movimientos</span>
             <span><k>Lectura</k>~13 min</span>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>En resumen</h2>
             <p>La &uacute;ltima palabra del Salmo 88 en hebreo es <i>majshaj</i>: &laquo;oscuridad&raquo;. As&iacute; termina la oraci&oacute;n, sin un &laquo;pero&raquo;, sin un giro. Es el &uacute;nico lamento del salterio que nunca se levanta. Y aun as&iacute;, los que armaron el libro lo dejaron adentro, con una melod&iacute;a indicada en el encabezado: alguien cant&oacute; esto en voz alta. El salmista no es un mal creyente que necesita m&aacute;s fe. Los lugares que nombra, el Seol, la fosa, la tierra del olvido, no son el infierno: son la tumba, lo que todos en su mundo daban por sentado sobre la muerte. &Eacute;l est&aacute; siendo del todo honesto con la teolog&iacute;a que tiene, y sigue habl&aacute;ndole a Dios. La iglesia siempre ha sabido cantar en la oscuridad.</p>
@@ -1011,14 +1189,24 @@
             <span><k>Forma</k>cinco movimentos</span>
             <span><k>Leitura</k>~13 min</span>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Em resumo</h2>
             <p>A &uacute;ltima palavra do Salmo 88 em hebraico &eacute; <i>machshak</i>: &laquo;escurid&atilde;o&raquo;. &Eacute; assim que a ora&ccedil;&atilde;o termina, sem um &laquo;mas&raquo;, sem uma virada. &Eacute; o &uacute;nico lamento do salt&eacute;rio que nunca se levanta. Mesmo assim, os que montaram o livro o mantiveram, com uma melodia indicada no cabe&ccedil;alho: algu&eacute;m cantou isso em voz alta. O salmista n&atilde;o &eacute; um mau crente que precisa de mais f&eacute;. Os lugares que ele nomeia, o Sheol, a cova, a terra do esquecimento, n&atilde;o s&atilde;o o inferno: s&atilde;o a sepultura, o que todos no mundo dele assumiam sobre a morte. Ele est&aacute; sendo totalmente honesto com a teologia que tem, e continua falando com Deus. A igreja sempre soube cantar no escuro.</p>
           </div>
           <p class="availability">O texto completo est&aacute; dispon&iacute;vel por enquanto em ingl&ecirc;s. <button type="button" data-setlang="en">Ler em ingl&ecirc;s</button></p>
         </div>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Roots</span><a href="#roots/roots-sheol" data-xsec="roots" data-xart="roots-sheol">Hell</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
       <article id="whose-world" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 04 &nbsp;&middot;&nbsp; <b>Genesis 1</b></p>
         <h1>Whose World Is This</h1>
         <p class="epigraph">Your origin story runs your life. Babylon&rsquo;s said the world is a battlefield and you&rsquo;re here to serve the strong. Genesis says the world is a gift, every person carries God&rsquo;s image, and the whole thing aims at rest.</p>
@@ -1026,7 +1214,11 @@
           <span class="wide"><k>Text</k>Genesis 1</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~11 min</span>
+          <span class="wide"><k>Standing</k>Genesis 1 read against ANE cosmology [consensus] &middot; a direct rebuttal of <i>Enuma Elish</i> [debated] &middot; <i>tehom</i> borrowed from Tiamat [rejected]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1064,7 +1256,6 @@
           <p>One: keep a real sabbath this week. One block of time, could be a few hours, where you make nothing, prove nothing, and produce nothing, on purpose. Not because you&rsquo;ve earned it. Because stopping is how you say, out loud with your calendar, &ldquo;the world is held by its Maker, not by me.&rdquo; That&rsquo;s not laziness. In Genesis it&rsquo;s the crown of the week.</p>
           <p>Two: this week, catch yourself looking at one person as a function, and look again. The cashier, the coworker, the person who irritates you at church. Genesis says that&rsquo;s an image-bearer, royal, God&rsquo;s own mark set in the world. Treat them like the story is true.</p>
           <p>Babylon&rsquo;s story ends with a party for the gods and a workforce that never gets to sit down. God&rsquo;s story ends with a day off, and everybody&rsquo;s invited. You get to choose which story you live in. Choose the one where the world is a gift.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1080,9 +1271,17 @@
           </dl>
           <p class="sources"><k>Sources</k><i>Enuma Elish</i> (Lambert, <i>Babylonian Creation Myths</i>; Heidel, <i>The Babylonian Genesis</i>); Sarna, <i>JPS Genesis</i>; Westermann, <i>Genesis 1–11</i>; Walton, <i>Genesis 1 as Ancient Cosmology</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-genesis" data-xsec="provenance" data-xart="prov-genesis">Genesis 1 and its neighbours</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="frame" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 05 &nbsp;&middot;&nbsp; <b>Genesis 1:6–8</b></p>
         <h1>God Speaks Into Your Frame</h1>
         <p class="epigraph">God spoke to his people inside the picture of the world they already had, a solid dome over a flat earth, and that&rsquo;s a mercy: you don&rsquo;t have to get your understanding, or your life, corrected before God will speak to you.</p>
@@ -1090,7 +1289,11 @@
           <span class="wide"><k>Text</k>Genesis 1:6–8</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~9 min</span>
+          <span class="wide"><k>Standing</k><i>raqia&#703;</i> understood as a solid dome [consensus] &middot; the ANE three-tier cosmos [consensus] &middot; Genesis describes rather than defends it [our read]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1122,7 +1325,6 @@
           <p>So here&rsquo;s Monday morning. Stop waiting.</p>
           <p>Stop telling yourself you&rsquo;ll pray seriously once your doubts are resolved. Pray now, with the doubts in the room. Stop telling yourself you&rsquo;ll serve once you&rsquo;re sure enough. Serve now, unsure. Stop keeping the real situation, the addiction, the failing marriage, the shaky faith, away from God until you&rsquo;ve cleaned it up enough to present. Bring him the frame you actually have this week. The partial understanding. The half-belief. The mess.</p>
           <p>He has worked with far less. He spoke a world into being for people who thought the stars were nailed to a dome, and it was still the word of God. He can speak into your frame too. He&rsquo;s been doing this the whole time.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1138,9 +1340,18 @@
           </dl>
           <p class="sources"><k>Sources</k>HALOT s.v. רָקִיעַ; Westermann, <i>Genesis 1–11</i>; Walton, <i>Genesis 1 as Ancient Cosmology</i>; Seely, <i>WTJ</i> 53–54; Keel, <i>Symbolism of the Biblical World</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Roots</span><a href="#roots/roots-raqia" data-xsec="roots" data-xart="roots-raqia">Firmament</a></li>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-genesis" data-xsec="provenance" data-xart="prov-genesis">Genesis 1 and its neighbours</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="verse-bent" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 06 &nbsp;&middot;&nbsp; <b>Genesis 9:20–27</b></p>
         <h1>The Verse They Bent</h1>
         <p class="epigraph">A verse that says &rsquo;Canaan&rsquo; was read as &rsquo;Africa&rsquo; for four hundred years, and it did monstrous harm. That is a warning about what we do to Scripture when we want it to bless our power.</p>
@@ -1148,7 +1359,11 @@
           <span class="wide"><k>Text</k>Genesis 9:20–27</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~10 min</span>
+          <span class="wide"><k>Standing</k>the curse falls on Canaan, not Ham [consensus] &middot; the racial reading is a later construction [consensus] &middot; the nature of Ham&rsquo;s offence [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1177,7 +1392,6 @@
           <p>One: there is probably a reading of some Bible passage that you hold onto, partly, because it serves you. It lets you off a hook, or it keeps you in charge, or it condemns someone you&rsquo;d like condemned. Name it. Bring it into the light and be willing to give it up. That&rsquo;s repentance, and it&rsquo;s not weakness, it&rsquo;s the church keeping its integrity.</p>
           <p>Two: this week, catch yourself in the act. The next time you reach for a verse to win an argument or to justify a grudge, stop and ask one question: am I reading this, or am I using it? That question, asked honestly, would have stopped four hundred years of harm.</p>
           <p>They had chapter and verse. They quoted it confidently. And they were dead wrong, and people suffered and died for their reading. Handle this book with fear. It is holy, and it is powerful, and we have proven what we&rsquo;ll do with it when we&rsquo;re not careful.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1193,9 +1407,17 @@
           </dl>
           <p class="sources"><k>Sources</k>Westermann, <i>Genesis 1–11</i>; Sarna, <i>JPS Genesis</i>; Goldenberg, <i>The Curse of Ham</i>; Haynes, <i>Noah&rsquo;s Curse</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-ham" data-xsec="provenance" data-xart="prov-ham">The verse they bent</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="moabite" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 07 &nbsp;&middot;&nbsp; <b>Ruth 4:13–22</b></p>
         <h1>A Moabite in the Family Tree</h1>
         <p class="epigraph">The Bible sets a rule that would have shut Ruth out right next to the genealogy that makes her royalty, on purpose, so we learn to read Scripture as a conversation and to locate belonging in loyalty, not lineage.</p>
@@ -1203,7 +1425,11 @@
           <span class="wide"><k>Text</k>Ruth 4:13–22</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~10 min</span>
+          <span class="wide"><k>Standing</k>Ezra&ndash;Nehemiah dissolved foreign marriages [consensus] &middot; Ruth and Jonah as canonical counter-voices [strong majority] &middot; written to answer Ezra [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1237,7 +1463,6 @@
           <p>One: there&rsquo;s a person, or a kind of person, that you have quietly filed under &ldquo;not really one of us.&rdquo; Maybe in the church, maybe in your own family. Someone whose belonging you&rsquo;ve put an asterisk on. This week, name them, and ask yourself honestly: am I bringing Ezra&rsquo;s fear to this person, or Ruth&rsquo;s welcome? And if it&rsquo;s the fear, is it actually about survival, or is it just about my comfort?</p>
           <p>Two: the next time you go to the Bible looking for one clean rule about who&rsquo;s in and who&rsquo;s out, and it hands you a conversation instead, don&rsquo;t get frustrated. Slow down and listen to the whole thing. The tension is not a bug. It&rsquo;s the text discipling you.</p>
           <p>The genealogy is the point. God&rsquo;s family tree has a Moabite in it. He put her there on purpose, and he wanted you to see her name.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1253,9 +1478,17 @@
           </dl>
           <p class="sources"><k>Sources</k>LaCocque, <i>Ruth</i>; Eskenazi &amp; Frymer-Kensky, <i>Ruth</i> (JPS); Sasson, <i>Jonah</i> (AB); Blenkinsopp, <i>Ezra–Nehemiah</i> (OTL)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-ruth" data-xsec="provenance" data-xart="prov-ruth">The canon arguing with itself</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="two-drafts" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 08 &nbsp;&middot;&nbsp; <b>2 Samuel 24 · 1 Chronicles 21</b></p>
         <h1>Two Drafts of the Same Story</h1>
         <p class="epigraph">The Bible tells David&rsquo;s worst day twice, and gets more careful the second time about how it talks about God and evil, and it keeps both drafts so we can watch it happen, and learn to tell the truer one about our own failures.</p>
@@ -1263,7 +1496,11 @@
           <span class="wide"><k>Text</k>2 Samuel 24 · 1 Chronicles 21</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~10 min</span>
+          <span class="wide"><k>Standing</k>Chronicles rewrites Samuel&ndash;Kings with a consistent tendency [consensus] &middot; <i>&#347;&#257;&#7789;&#257;n</i> as a proper name in 1 Chr 21:1 [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1302,7 +1539,6 @@
           <p>One: stop saying &ldquo;God did this&rdquo; about your own sin. Just stop. When you talk about your failures, own them the way David finally did, in sackcloth, by name, no spiritual soft-focus. &ldquo;I have sinned greatly.&rdquo; That sentence is where healing actually starts.</p>
           <p>Two: take the failure you are most ashamed of. The specific one. And instead of burying it, ask God to make that exact ground the place your worship begins. That&rsquo;s not a trick. It&rsquo;s what this whole story is about. He did it for David on Araunah&rsquo;s floor. He did it for the world on a hill. He can do it with yours.</p>
           <p>The Bible kept both drafts of David&rsquo;s worst day. From here on, keep telling the truer one.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1318,9 +1554,17 @@
           </dl>
           <p class="sources"><k>Sources</k>Japhet, <i>I &amp; II Chronicles</i> (OTL); Knoppers, <i>1 Chronicles 10–29</i> (AB); Klein, <i>1 Chronicles</i> (Hermeneia); McCarter, <i>II Samuel</i> (AB)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-chronicles" data-xsec="provenance" data-xart="prov-chronicles">Two drafts of one story</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="rule-breaks" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 09 &nbsp;&middot;&nbsp; <b>Job 21</b></p>
         <h1>When the Rule Breaks</h1>
         <p class="epigraph">When life breaks the rule that good people do well, you don&rsquo;t have to choose between blaming God and blaming the sufferer. The Bible gives you a third book, and it&rsquo;s called Job.</p>
@@ -1328,7 +1572,11 @@
           <span class="wide"><k>Text</k>Job 21</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~13 min</span>
+          <span class="wide"><k>Standing</k>Job 21 denies strict retribution [consensus] &middot; Proverbs&rsquo; sayings were never guarantees [consensus] &middot; the wisdom books as a preserved debate [strong majority]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1363,7 +1611,6 @@
           <p>When you&rsquo;re with someone who&rsquo;s suffering, kill the audit. Do not explain their pain to them. Don&rsquo;t find the reason. Notice that Job&rsquo;s friends actually did great for the first seven days, when they sat on the ground with him and said nothing. They only failed when they opened their mouths. Sometimes the most spiritual thing you can do is show up, stay, and keep the theology to yourself.</p>
           <p>And when the suffering is yours, you have permission to protest. Loudly. Job argued with God for thirty-something chapters, and God&rsquo;s verdict was that Job spoke rightly and the people defending God politely did not. Honesty in the dark is not a lack of faith. It might be the truest faith in the room.</p>
           <p>The Bible gave us a whole book for the days the rule breaks. Its name is Job. And from the first chapter to the last, it is on your side.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1379,9 +1626,17 @@
           </dl>
           <p class="sources"><k>Sources</k>Clines, <i>Job 21–37</i> (WBC); Fox, <i>Proverbs</i> (AYB); Seow, <i>Ecclesiastes</i> (AYB); Crenshaw, <i>Old Testament Wisdom</i>; Koch on deed–consequence</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-wisdom" data-xsec="provenance" data-xart="prov-wisdom">When the rule breaks</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="third-way" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 10 &nbsp;&middot;&nbsp; <b>Matthew 5:38–42</b></p>
         <h1>The Third Way</h1>
         <p class="epigraph">Jesus gives a third option between hitting back and lying down: a response that refuses the humiliation, exposes the wrong, and keeps you free, because that&rsquo;s how the Father acts.</p>
@@ -1389,7 +1644,11 @@
           <span class="wide"><k>Text</k>Matthew 5:38–42</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~13 min</span>
+          <span class="wide"><k>Standing</k>the passage rejects retaliation in kind [consensus] &middot; the three examples are active, not passive [strong majority] &middot; Wink&rsquo;s specific reconstructions [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1425,7 +1684,6 @@
           <p>So here&rsquo;s Monday morning. You&rsquo;ve got a relationship right now, probably more than one, where you&rsquo;re doing the fist or the freeze. You&rsquo;re either rehearsing the comeback or you&rsquo;re swallowing it and calling that maturity. Pick one of them this week. And instead of either, find the move that&rsquo;s neither. Name the thing that happened, plainly, without heat. Don&rsquo;t comply with the wrong, don&rsquo;t pretend it didn&rsquo;t happen. Refuse the shame that isn&rsquo;t yours to carry. And don&rsquo;t hate the person while you do it.</p>
           <p>That&rsquo;s harder than hitting back and it&rsquo;s harder than going quiet. It&rsquo;s also the only one of the three that leaves you free.</p>
           <p>Jesus didn&rsquo;t come to make you a doormat. He didn&rsquo;t come to make you a fighter. He came to make you free.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1441,9 +1699,17 @@
           </dl>
           <p class="sources"><k>Sources</k>Wink, <i>Engaging the Powers</i>; Davies &amp; Allison, <i>ICC Matthew</i>; Luz, <i>Matthew 1–7</i>; France, <i>Matthew</i> (NICNT); Stassen, <i>JBL</i> 122 (2003)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-cheek" data-xsec="provenance" data-xart="prov-cheek">Turn the other cheek</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="life-age" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 11 &nbsp;&middot;&nbsp; <b>Matthew 25:31–46</b></p>
         <h1>The Life of the Age</h1>
         <p class="epigraph">Eternal life isn&rsquo;t a finish line you&rsquo;re trying to qualify for. It&rsquo;s the life of God&rsquo;s coming world, and this parable says you step into it now, through mercy shown to someone who can&rsquo;t pay you back.</p>
@@ -1451,7 +1717,11 @@
           <span class="wide"><k>Text</k>Matthew 25:31–46</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~9 min</span>
+          <span class="wide"><k>Standing</k><i>ai&#333;nios</i> often means &ldquo;of the Age to Come&rdquo; [consensus] &middot; it also carries &ldquo;unending&rdquo; [consensus] &middot; the duration of final punishment [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1484,7 +1754,6 @@
           <p>And this points past itself, because Jesus doesn&rsquo;t just say the King is <i>hidden</i> in the least of these. He became one of them. He was the stranger with nowhere to lay his head. He was the naked man on the cross. He was the prisoner, tried and condemned. When he identifies himself with the hungry and the jailed, he&rsquo;s not speaking in the abstract. He&rsquo;s telling you exactly which door he&rsquo;s standing behind, so you&rsquo;ll know where to look for him for the rest of your life.</p>
           <p>So here&rsquo;s Monday morning. This week, do one concrete act of mercy for a specific person who cannot pay you back. Not a donation you won&rsquo;t feel. Something with your hands and your time. The meal, the ride, the visit, the call. And do it as though you were doing it for Christ himself, because this parable says, flatly, that you are.</p>
           <p>Stop asking how long eternal life is. That&rsquo;s not the first question. Start living in it today, and you&rsquo;ll find out it was never only about later.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1500,9 +1769,17 @@
           </dl>
           <p class="sources"><k>Sources</k>BDAG; TDNT 1 (Sasse); Ramelli &amp; Konstan, <i>Terms for Eternity</i>. Commentary: Davies &amp; Allison, <i>ICC Matthew</i>; France, <i>Matthew</i> (NICNT); Luz, <i>Matthew 21–28</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Roots</span><a href="#roots/roots-aionios" data-xsec="roots" data-xart="roots-aionios">Eternal</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="luke-checked" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 12 &nbsp;&middot;&nbsp; <b>Luke 1:1–4</b></p>
         <h1>Luke Checked</h1>
         <p class="epigraph">Luke opens his Gospel not with &rsquo;I was there&rsquo; but with &rsquo;here&rsquo;s how I checked,&rsquo; which means the faith was built to be examined, and it rests on a chain of witnesses, not on a signature.</p>
@@ -1510,7 +1787,11 @@
           <span class="wide"><k>Text</k>Luke 1:1–4</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~9 min</span>
+          <span class="wide"><k>Standing</k>the Gospels are textually anonymous [consensus] &middot; the traditional names are the only ones attested [consensus] &middot; whether the names were attached late [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1542,7 +1823,6 @@
           <p>One: there is probably a question about the Bible or the faith that you&rsquo;ve been steering around for years because you&rsquo;re afraid of the answer. You know what it is. This week, start actually looking into it. Not on a random forum, use good sources, the way Luke would have. Faith that has been examined is stronger than faith that&rsquo;s been protected from examination.</p>
           <p>Two: the next time someone, a friend, a coworker, your teenager, asks you a hard question about Scripture, don&rsquo;t get defensive. Get curious with them. Say, &ldquo;that&rsquo;s a real question, let&rsquo;s look at it.&rdquo; That response does more for the gospel than any amount of certainty you could fake.</p>
           <p>The Gospel of Luke starts with a man saying, in effect, &ldquo;I checked, and here&rsquo;s what I found.&rdquo; You have his permission. Go check.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1558,9 +1838,17 @@
           </dl>
           <p class="sources"><k>Sources</k>Hengel, <i>The Four Gospels and the One Gospel</i>; Gathercole, <i>ZNW</i> 104 (2013); Ehrman, <i>The New Testament</i>; Brown, <i>An Introduction to the NT</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-gospels" data-xsec="provenance" data-xart="prov-gospels">Who wrote the Gospels?</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="couldnt-lose" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 13 &nbsp;&middot;&nbsp; <b>John 7:53–8:11</b></p>
         <h1>The Story the Church Couldn&rsquo;t Lose</h1>
         <p class="epigraph">The church kept a story that had no manuscript home because it captured something it couldn&rsquo;t afford to lose: Jesus will not be your executioner, even when the law looks like it&rsquo;s on the prosecution&rsquo;s side.</p>
@@ -1568,7 +1856,11 @@
           <span class="wide"><k>Text</k>John 7:53–8:11</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~11 min</span>
+          <span class="wide"><k>Standing</k>not part of John&rsquo;s original text [consensus] &middot; preserves genuine early Jesus tradition [strong majority] &middot; still Scripture, as most traditions hold [our read]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1608,7 +1900,6 @@
           <p>If you&rsquo;re one of the accusers, and most of us are, most days: name the person you&rsquo;ve got a stone in your hand for right now. The spouse, the ex, the kid, the coworker, the public figure you love to be furious at. You know who it is. Put it down. You are not the one qualified to throw.</p>
           <p>And if you&rsquo;re the woman, if you&rsquo;re the one who got caught, who&rsquo;s standing there waiting for the church to do what churches have often done: hear both sentences, because they&rsquo;re both for you. You are not condemned. And you can leave this. Jesus said both, and he wasn&rsquo;t lying about either one.</p>
           <p>The church could not lose this story. Don&rsquo;t you lose it either. Live like it&rsquo;s true.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1624,9 +1915,17 @@
           </dl>
           <p class="sources"><k>Sources</k>Metzger, <i>A Textual Commentary</i>; Knust &amp; Wasserman, <i>To Cast the First Stone</i>; Brown, <i>John I–XII</i> (AB 29)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-adultery" data-xsec="provenance" data-xart="prov-adultery">The story that floats</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="dead-rise" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 14 &nbsp;&middot;&nbsp; <b>1 Thessalonians 4:13–18</b></p>
         <h1>The Dead Rise First</h1>
         <p class="epigraph">Paul wrote this passage to comfort grieving people, and its point is that the dead in Christ rise first and nobody who belongs to him gets left behind. A 190-year-old fear industry has buried the comfort under a countdown.</p>
@@ -1634,7 +1933,11 @@
           <span class="wide"><k>Text</k>1 Thessalonians 4:13–18</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~10 min</span>
+          <span class="wide"><k>Standing</k><i>apant&#275;sis</i> pictures a welcoming party, not an evacuation [strong majority] &middot; one public parousia [strong majority] &middot; the pretrib system is 19th-century [consensus]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1669,7 +1972,6 @@
           <p>One: if you&rsquo;ve been carrying an end-times countdown, the anxiety, the checking, the fear of being left, set it down. You are allowed to expect Christ&rsquo;s return and refuse to live in dread of it. That dread is not from this text.</p>
           <p>Two: the next time you&rsquo;re at a funeral, or you&rsquo;re the one grieving, bring the real 1 Thessalonians 4 with you. &ldquo;The dead in Christ will rise first.&rdquo; &ldquo;We will always be with the Lord.&rdquo; Say it to yourself. Say it to the family. That&rsquo;s what it&rsquo;s for.</p>
           <p>It&rsquo;s not an evacuation. It&rsquo;s a welcome party for the returning King. And you are on the guest list, and so are the people you&rsquo;ve buried.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1685,9 +1987,18 @@
           </dl>
           <p class="sources"><k>Sources</k>Malherbe, <i>Letters to the Thessalonians</i> (AB); Fee, <i>1–2 Thessalonians</i> (NICNT); Wanamaker, <i>Epistles to the Thessalonians</i> (NIGTC); Wright, &ldquo;Farewell to the Rapture&rdquo;; Sandeen; Weber</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-rapture" data-xsec="provenance" data-xart="prov-rapture">Where the rapture came from</a></li>
+          <li><span class="sec">Roots</span><a href="#roots/roots-sheol" data-xsec="roots" data-xart="roots-sheol">Hell</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="church-shape" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Reflection 15 &nbsp;&middot;&nbsp; <b>1 Timothy 3:1–13</b></p>
         <h1>When the Church Changed Shape</h1>
         <p class="epigraph">The church changed shape between Paul&rsquo;s earliest letters and the Pastorals, from Spirit-improvised households to vetted offices, and Scripture keeps both. The honest question isn&rsquo;t which one is the real church, it&rsquo;s what each was trying to protect.</p>
@@ -1695,7 +2006,11 @@
           <span class="wide"><k>Text</k>1 Timothy 3:1–13</span>
           <span><k>Form</k>five movements</span>
           <span><k>Reading</k>~11 min</span>
+          <span class="wide"><k>Standing</k>the Pastorals describe a more structured church than the undisputed seven [consensus] &middot; non-Pauline authorship [strong majority] &middot; Pauline authorship via a secretary [debated]</span>
         </div>
+
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
 
         <div class="body">
           <h2><span class="mv">1</span> Hook + Big Idea</h2>
@@ -1735,7 +2050,6 @@
           <p>So here&rsquo;s Monday morning. Go home and read 1 Timothy 3:2 through 7 slowly. Find the one line that has nothing to do with your talents: &ldquo;not quarrelsome,&rdquo; maybe, or &ldquo;not a lover of money,&rdquo; or &ldquo;manages his own household well,&rdquo; or just &ldquo;above reproach.&rdquo; Pick that one. And this week, let it actually be measured. Ask your spouse. Ask someone who&rsquo;d tell you the truth. That list was never meant to stay on the page describing other people. It&rsquo;s a mirror for anyone the church has trusted with anything.</p>
           <p>And the closing image is one verse over, in 2 Timothy. &ldquo;What you have heard from me… entrust to faithful people, who will be able to teach others also.&rdquo; Count the generations in that sentence. Paul, to Timothy, to faithful people, to others. Four hands in one line.</p>
           <p>The church was never a statue somebody carved once and set down. It&rsquo;s a baton. It&rsquo;s been handed off, hand to hand to hand, through house churches and councils and elder boards and every awkward committee meeting since, and it&rsquo;s still moving. Your job isn&rsquo;t to freeze it. Your job is to have hands clean enough to carry it, and to pass it on. That&rsquo;s a load you can actually carry.</p>
-          <p>---</p>
         </div>
 
         <section class="apparatus">
@@ -1751,6 +2065,13 @@
           </dl>
           <p class="sources"><k>Sources</k>Marshall, <i>ICC Pastoral Epistles</i>; Johnson, <i>Anchor Bible</i> 35A; Towner, <i>The Letters to Timothy and Titus</i> (NICNT)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-paul" data-xsec="provenance" data-xart="prov-paul">Which letters are Paul&rsquo;s?</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
     </main>
   </div>
@@ -1810,6 +2131,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Start here</b></p>
           <h1>The pathway</h1>
           <p class="epigraph">An honest look at who Jesus was, and a real invitation to follow him. Questions welcome. No pressure, no gimmicks.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What this is</h2>
             <p>A four-stage path that runs from first curiosity all the way to following Jesus with a church around you. It is built for people with little or no church background.</p>
@@ -1867,6 +2190,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Empieza aqu&iacute;</b></p>
           <h1>El camino</h1>
           <p class="epigraph">Una mirada honesta a qui&eacute;n fue Jes&uacute;s, y una invitaci&oacute;n real a seguirlo. Las preguntas son bienvenidas. Sin presi&oacute;n y sin trucos.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Qu&eacute; es esto</h2>
             <p>Un camino de cuatro etapas que va de la primera curiosidad hasta seguir a Jes&uacute;s con una comunidad alrededor. Est&aacute; hecho para personas con poca o ninguna experiencia en la iglesia.</p>
@@ -1924,6 +2249,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Comece aqui</b></p>
           <h1>O caminho</h1>
           <p class="epigraph">Um olhar honesto sobre quem Jesus foi, e um convite real para segui-lo. Perguntas s&atilde;o bem-vindas. Sem press&atilde;o e sem truques.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O que &eacute; isto</h2>
             <p>Um caminho de quatro etapas que vai da primeira curiosidade at&eacute; seguir Jesus com uma comunidade ao redor. Foi feito para pessoas com pouca ou nenhuma experi&ecirc;ncia de igreja.</p>
@@ -1983,6 +2310,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>The shape</b></p>
           <h1>How it moves</h1>
           <p class="epigraph">Trust the sources, meet the person, weigh the claim, start the life.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>The logic of the course</h2>
             <p>Stage 1 moves in one line: what am I holding, then who is he, then what is the claim, then what is the life. Four units, in that order, because each one earns the right to ask the next question.</p>
@@ -1994,8 +2323,8 @@
             </ul>
 
             <h2>Where the scholarship comes from</h2>
-            <p>Every session guide is built from the same research notes as the pieces in Reflections and Roots. Same sources, same three confidence labels, and the same hard rule: never invent a citation. A sermon and a session on the same passage share a page of research.</p>
-            <p>The three labels get introduced in session 1 and used every week after: <span class="conf">Consensus</span> <span class="conf">Debated</span> <span class="conf">Our read</span>. You will always be told which one you are getting.</p>
+            <p>Every session guide is built from the same research notes as the pieces in Reflections and Roots. Same sources, same five confidence labels, and the same hard rule: never invent a citation. A sermon and a session on the same passage share a page of research.</p>
+            <p>The five labels get introduced in session 1 and used every week after: <span class="conf">Consensus</span> <span class="conf">Strong majority</span> <span class="conf">Debated</span> <span class="conf">Our read</span> <span class="conf">Rejected</span>. You will always be told which one you are getting.</p>
 
             <h2>The shape of a session</h2>
             <p>About two hours, every week, in this order.</p>
@@ -2022,6 +2351,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>La forma</b></p>
           <h1>C&oacute;mo avanza</h1>
           <p class="epigraph">Conf&iacute;a en las fuentes, conoce a la persona, sopesa la afirmaci&oacute;n, empieza la vida.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>La l&oacute;gica del curso</h2>
             <p>La Etapa 1 avanza en una sola l&iacute;nea: qu&eacute; es esto que tengo en las manos, luego qui&eacute;n es &eacute;l, luego cu&aacute;l es la afirmaci&oacute;n, luego c&oacute;mo es la vida. Cuatro unidades, en ese orden, porque cada una se gana el derecho de hacer la siguiente pregunta.</p>
@@ -2033,8 +2364,8 @@
             </ul>
 
             <h2>De d&oacute;nde sale la investigaci&oacute;n</h2>
-            <p>Cada gu&iacute;a de sesi&oacute;n se construye a partir de las mismas notas de investigaci&oacute;n que las piezas de Reflections y Roots. Mismas fuentes, mismas tres etiquetas de confianza, y la misma regla dura: nunca inventar una cita. Un serm&oacute;n y una sesi&oacute;n sobre el mismo pasaje comparten una p&aacute;gina de investigaci&oacute;n.</p>
-            <p>Las tres etiquetas se presentan en la sesi&oacute;n 1 y se usan cada semana: <span class="conf">Consenso</span> <span class="conf">En debate</span> <span class="conf">Nuestra lectura</span>. Siempre se te dice cu&aacute;l est&aacute;s recibiendo.</p>
+            <p>Cada gu&iacute;a de sesi&oacute;n se construye a partir de las mismas notas de investigaci&oacute;n que las piezas de Reflections y Roots. Mismas fuentes, mismas cinco etiquetas de confianza, y la misma regla dura: nunca inventar una cita. Un serm&oacute;n y una sesi&oacute;n sobre el mismo pasaje comparten una p&aacute;gina de investigaci&oacute;n.</p>
+            <p>Las cinco etiquetas se presentan en la sesi&oacute;n 1 y se usan cada semana: <span class="conf">Consenso</span> <span class="conf">Mayor&iacute;a amplia</span> <span class="conf">En debate</span> <span class="conf">Nuestra lectura</span> <span class="conf">Rechazado</span>. Siempre se te dice cu&aacute;l est&aacute;s recibiendo.</p>
 
             <h2>La forma de una sesi&oacute;n</h2>
             <p>Unas dos horas, cada semana, en este orden.</p>
@@ -2061,6 +2392,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>A forma</b></p>
           <h1>Como avan&ccedil;a</h1>
           <p class="epigraph">Confie nas fontes, conhe&ccedil;a a pessoa, pese a afirma&ccedil;&atilde;o, comece a vida.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>A l&oacute;gica do curso</h2>
             <p>A Etapa 1 avan&ccedil;a numa linha s&oacute;: o que &eacute; isto que tenho nas m&atilde;os, depois quem &eacute; ele, depois qual &eacute; a afirma&ccedil;&atilde;o, depois como &eacute; a vida. Quatro unidades, nessa ordem, porque cada uma conquista o direito de fazer a pergunta seguinte.</p>
@@ -2072,8 +2405,8 @@
             </ul>
 
             <h2>De onde vem a pesquisa</h2>
-            <p>Cada guia de encontro &eacute; constru&iacute;do a partir das mesmas notas de pesquisa que as pe&ccedil;as de Reflections e Roots. Mesmas fontes, mesmas tr&ecirc;s etiquetas de confian&ccedil;a, e a mesma regra dura: nunca inventar uma cita&ccedil;&atilde;o. Um serm&atilde;o e um encontro sobre a mesma passagem compartilham uma p&aacute;gina de pesquisa.</p>
-            <p>As tr&ecirc;s etiquetas s&atilde;o apresentadas no encontro 1 e usadas toda semana: <span class="conf">Consenso</span> <span class="conf">Em debate</span> <span class="conf">Nossa leitura</span>. Voc&ecirc; sempre saber&aacute; qual est&aacute; recebendo.</p>
+            <p>Cada guia de encontro &eacute; constru&iacute;do a partir das mesmas notas de pesquisa que as pe&ccedil;as de Reflections e Roots. Mesmas fontes, mesmas cinco etiquetas de confian&ccedil;a, e a mesma regra dura: nunca inventar uma cita&ccedil;&atilde;o. Um serm&atilde;o e um encontro sobre a mesma passagem compartilham uma p&aacute;gina de pesquisa.</p>
+            <p>As cinco etiquetas s&atilde;o apresentadas no encontro 1 e usadas toda semana: <span class="conf">Consenso</span> <span class="conf">Maioria ampla</span> <span class="conf">Em debate</span> <span class="conf">Nossa leitura</span> <span class="conf">Rejeitado</span>. Voc&ecirc; sempre saber&aacute; qual est&aacute; recebendo.</p>
 
             <h2>A forma de um encontro</h2>
             <p>Cerca de duas horas, toda semana, nesta ordem.</p>
@@ -2102,6 +2435,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Stage 0</b></p>
           <h1>Looking into it</h1>
           <p class="lede">Open, ongoing, no sign-up. This is the front door.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What it is</h2>
             <p>Two things, and neither one asks anything of you.</p>
@@ -2120,6 +2455,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 0</b></p>
           <h1>Echar un vistazo</h1>
           <p class="lede">Abierta, permanente, sin inscripci&oacute;n. Esta es la puerta de entrada.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Qu&eacute; es</h2>
             <p>Dos cosas, y ninguna te pide nada.</p>
@@ -2138,6 +2475,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 0</b></p>
           <h1>Dar uma olhada</h1>
           <p class="lede">Aberta, cont&iacute;nua, sem inscri&ccedil;&atilde;o. Esta &eacute; a porta de entrada.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O que &eacute;</h2>
             <p>Duas coisas, e nenhuma delas pede nada de voc&ecirc;.</p>
@@ -2158,6 +2497,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Stage 1</b></p>
           <h1>The course</h1>
           <p class="lede">A group of six to ten. Thirteen weekly sessions, about two hours each.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What it is</h2>
             <p>The core of the pathway. A small group around a table, a shared meal, and a trained facilitator whose job is to guide the conversation, not to deliver a lecture. Thirteen sessions across four units.</p>
@@ -2205,6 +2546,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 1</b></p>
           <h1>El curso</h1>
           <p class="lede">Un grupo de seis a diez. Trece sesiones semanales, de unas dos horas cada una.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Qu&eacute; es</h2>
             <p>El coraz&oacute;n del camino. Un grupo peque&ntilde;o alrededor de una mesa, una comida compartida, y un facilitador capacitado cuyo trabajo es guiar la conversaci&oacute;n, no dar una clase. Trece sesiones en cuatro unidades.</p>
@@ -2252,6 +2595,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 1</b></p>
           <h1>O curso</h1>
           <p class="lede">Um grupo de seis a dez. Treze encontros semanais, de cerca de duas horas cada.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O que &eacute;</h2>
             <p>O cora&ccedil;&atilde;o do caminho. Um grupo pequeno em volta de uma mesa, uma refei&ccedil;&atilde;o compartilhada, e um facilitador treinado cujo trabalho &eacute; conduzir a conversa, n&atilde;o dar uma aula. Treze encontros em quatro unidades.</p>
@@ -2301,6 +2646,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Stage 2</b></p>
           <h1>Rhythm</h1>
           <p class="lede">A lighter follow-on. Six sessions, or an ongoing rhythm. Every other week.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What it is</h2>
             <p>For anyone who finished Stage 1 and wants to keep going, whether or not they have committed to anything. Same table, same facilitator, half as much teaching and twice as much practice. About ninety minutes.</p>
@@ -2322,6 +2669,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 2</b></p>
           <h1>Ritmo</h1>
           <p class="lede">Una continuaci&oacute;n m&aacute;s ligera. Seis sesiones, o un ritmo permanente. Cada dos semanas.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Qu&eacute; es</h2>
             <p>Para quien termin&oacute; la Etapa 1 y quiere seguir, se haya comprometido a algo o no. Misma mesa, mismo facilitador, la mitad de ense&ntilde;anza y el doble de pr&aacute;ctica. Unos noventa minutos.</p>
@@ -2343,6 +2692,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 2</b></p>
           <h1>Ritmo</h1>
           <p class="lede">Uma continua&ccedil;&atilde;o mais leve. Seis encontros, ou um ritmo cont&iacute;nuo. A cada duas semanas.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O que &eacute;</h2>
             <p>Para quem terminou a Etapa 1 e quer continuar, tendo se comprometido com algo ou n&atilde;o. Mesma mesa, mesmo facilitador, metade do ensino e o dobro de pr&aacute;tica. Cerca de noventa minutos.</p>
@@ -2366,6 +2717,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Stage 3</b></p>
           <h1>Threshold</h1>
           <p class="lede">Self-chosen. Named openly from the start so nobody feels ambushed.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Who it&rsquo;s for</h2>
             <p>Anyone who wants to commit. You can sit in Stage 1 or Stage 2 for as long as you like and never come here, and that is a fine outcome, not a stalled one.</p>
@@ -2392,6 +2745,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 3</b></p>
           <h1>Umbral</h1>
           <p class="lede">Se elige. Se nombra de frente desde el principio para que nadie se sienta emboscado.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Para qui&eacute;n es</h2>
             <p>Para quien quiere dar el paso. Puedes quedarte en la Etapa 1 o en la 2 todo el tiempo que quieras y nunca llegar aqu&iacute;, y eso est&aacute; bien, no es quedarse atascado.</p>
@@ -2418,6 +2773,8 @@
           <p class="eyebrow">Encounter &nbsp;&middot;&nbsp; <b>Etapa 3</b></p>
           <h1>Limiar</h1>
           <p class="lede">&Eacute; escolhida. &Eacute; nomeada de frente desde o come&ccedil;o para que ningu&eacute;m se sinta emboscado.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Para quem &eacute;</h2>
             <p>Para quem quer dar o passo. Voc&ecirc; pode ficar na Etapa 1 ou na 2 o tempo que quiser e nunca chegar aqui, e isso est&aacute; certo, n&atilde;o &eacute; ficar travado.</p>
@@ -2447,6 +2804,8 @@
           <h1>In plain words</h1>
           <p class="epigraph">You don&rsquo;t clean yourself up first. You come as you are.</p>
           <p class="lede">What the whole thing is heading toward, said straight. A conversation of about ten minutes, not a talk.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Five plain moves</h2>
             <ol class="numbered">
@@ -2469,6 +2828,12 @@
             <h2>What you will not get here</h2>
             <p>No &ldquo;every head bowed, every eye closed.&rdquo; No spotlight, no hands raised, no walking to the front while everyone watches. Nobody will ask you three more times whether you are sure. Nobody will imply you are in danger if you leave the room without praying.</p>
             <p>And if you are wrestling with it, good. That is a sign you are taking it seriously, not a problem someone needs to fix for you.</p>
+          <div class="nextstep">
+            <h4>What you can do now</h4>
+            <p>The course is not scheduled yet. When it is, the date will be posted here. In the meantime three things are open to you today, and none of them require you to tell anyone anything.</p><p><b>Read Mark.</b> It is the shortest of the four accounts, about ninety minutes end to end. Read it the way you would read anybody&rsquo;s account of a person they knew and could not get over. If you want to know where the document itself came from, <a href="#provenance/prov-gospels" data-xsec="provenance" data-xart="prov-gospels">Provenance</a> lays that out.</p><p><b>Try five minutes.</b> Somewhere quiet, say plainly whatever is actually true for you, including that you are not sure anyone is listening. That is a real prayer. It is where most people start, and it does not commit you to anything.</p><p><b>Have one honest conversation.</b> With somebody who will not perform certainty at you. One of those is worth more than any course, including this one.</p><p>And if none of that appeals, that is a real answer too. Nothing here needs you to decide anything today.</p>
+          </div>
+          <!-- WAITLIST SLOT: when a contact address and a start date exist,
+               replace the first paragraph above with the capture block. -->
           </div>
         </div>
 
@@ -2477,6 +2842,8 @@
           <h1>En palabras sencillas</h1>
           <p class="epigraph">No te limpias primero. Vienes tal como est&aacute;s.</p>
           <p class="lede">Hacia d&oacute;nde apunta todo esto, dicho sin rodeos. Una conversaci&oacute;n de unos diez minutos, no una charla.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Cinco movimientos sencillos</h2>
             <ol class="numbered">
@@ -2499,6 +2866,10 @@
             <h2>Lo que no vas a encontrar aqu&iacute;</h2>
             <p>Nada de &laquo;todos con la cabeza inclinada y los ojos cerrados&raquo;. Sin foco encima, sin levantar la mano, sin pasar al frente mientras todos miran. Nadie te va a preguntar tres veces m&aacute;s si est&aacute;s seguro. Nadie va a insinuar que est&aacute;s en peligro si te vas sin orar.</p>
             <p>Y si est&aacute;s luchando con esto, bien. Es se&ntilde;al de que lo est&aacute;s tomando en serio, no un problema que alguien tenga que arreglarte.</p>
+          <div class="nextstep">
+            <h4>Qu&eacute; puedes hacer ahora</h4>
+            <p>El curso todav&iacute;a no tiene fecha. Cuando la tenga, se publicar&aacute; aqu&iacute;. Mientras tanto hay tres cosas abiertas para ti hoy, y ninguna te obliga a decirle nada a nadie.</p><p><b>Lee Marcos.</b> Es el m&aacute;s corto de los cuatro relatos, unos noventa minutos de principio a fin. L&eacute;elo como leer&iacute;as el relato de cualquiera sobre una persona a la que conoci&oacute; y no pudo olvidar.</p><p><b>Prueba cinco minutos.</b> En un lugar tranquilo, di con claridad lo que de verdad te pasa, incluso que no est&aacute;s seguro de que alguien te escuche. Eso es una oraci&oacute;n de verdad. Ah&iacute; empieza casi todo el mundo, y no te compromete a nada.</p><p><b>Ten una conversaci&oacute;n honesta.</b> Con alguien que no te act&uacute;e una certeza que no tiene. Una de esas vale m&aacute;s que cualquier curso, incluido este.</p><p>Y si nada de eso te atrae, esa tambi&eacute;n es una respuesta v&aacute;lida. Aqu&iacute; nada necesita que decidas nada hoy.</p>
+          </div>
           </div>
         </div>
 
@@ -2507,6 +2878,8 @@
           <h1>Em palavras simples</h1>
           <p class="epigraph">Voc&ecirc; n&atilde;o se limpa primeiro. Voc&ecirc; vem como est&aacute;.</p>
           <p class="lede">Para onde tudo isto aponta, dito sem rodeios. Uma conversa de uns dez minutos, n&atilde;o uma palestra.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Cinco movimentos simples</h2>
             <ol class="numbered">
@@ -2529,6 +2902,10 @@
             <h2>O que voc&ecirc; n&atilde;o vai encontrar aqui</h2>
             <p>Nada de &laquo;todos de cabe&ccedil;a baixa e olhos fechados&raquo;. Sem holofote, sem levantar a m&atilde;o, sem ir &agrave; frente enquanto todos olham. Ningu&eacute;m vai perguntar mais tr&ecirc;s vezes se voc&ecirc; tem certeza. Ningu&eacute;m vai insinuar que voc&ecirc; est&aacute; em perigo se sair da sala sem orar.</p>
             <p>E se voc&ecirc; est&aacute; lutando com isso, &oacute;timo. &Eacute; sinal de que est&aacute; levando a s&eacute;rio, n&atilde;o um problema que algu&eacute;m precise consertar para voc&ecirc;.</p>
+          <div class="nextstep">
+            <h4>O que voc&ecirc; pode fazer agora</h4>
+            <p>O curso ainda n&atilde;o tem data. Quando tiver, ela ser&aacute; publicada aqui. Enquanto isso h&aacute; tr&ecirc;s coisas abertas para voc&ecirc; hoje, e nenhuma delas exige que voc&ecirc; conte nada a ningu&eacute;m.</p><p><b>Leia Marcos.</b> &Eacute; o mais curto dos quatro relatos, cerca de noventa minutos do come&ccedil;o ao fim. Leia como leria o relato de qualquer pessoa sobre algu&eacute;m que conheceu e n&atilde;o conseguiu esquecer.</p><p><b>Experimente cinco minutos.</b> Num lugar quieto, diga com clareza o que de fato se passa com voc&ecirc;, inclusive que n&atilde;o tem certeza de que algu&eacute;m esteja ouvindo. Isso &eacute; uma ora&ccedil;&atilde;o de verdade. &Eacute; onde quase todo mundo come&ccedil;a, e n&atilde;o compromete voc&ecirc; a nada.</p><p><b>Tenha uma conversa honesta.</b> Com algu&eacute;m que n&atilde;o v&aacute; encenar uma certeza que n&atilde;o tem. Uma dessas vale mais que qualquer curso, incluindo este.</p><p>E se nada disso lhe atrai, essa tamb&eacute;m &eacute; uma resposta v&aacute;lida. Aqui nada precisa que voc&ecirc; decida nada hoje.</p>
+          </div>
           </div>
         </div>
       </article>
@@ -2567,6 +2944,16 @@
           <span class="t"><span class="l-en">Meek</span><span class="l-es">Manso</span><span class="l-pt">Manso</span></span>
           <span class="r">Matthew 5:5</span>
         </a>
+        <a class="toc-item" href="#roots/roots-nephesh" data-target="roots-nephesh">
+          <span class="n">04</span>
+          <span class="t"><span class="l-en">Soul</span><span class="l-es">Alma</span><span class="l-pt">Alma</span></span>
+          <span class="r">Genesis 2:7</span>
+        </a>
+        <a class="toc-item" href="#roots/roots-sheol" data-target="roots-sheol">
+          <span class="n">05</span>
+          <span class="t"><span class="l-en">Hell</span><span class="l-es">Infierno</span><span class="l-pt">Inferno</span></span>
+          <span class="r">Psalm 88</span>
+        </a>
       </div>
     </nav>
     <main>
@@ -2575,6 +2962,8 @@
           <p class="eyebrow">Roots &nbsp;&middot;&nbsp; <b>Method</b></p>
           <h1>How Roots works</h1>
           <p class="epigraph">A word is not a definition. It is a range, and a sentence that picks one out of it.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What these are</h2>
             <p>Short studies of single words that English has to flatten. Every translation loses something, not because translators are careless but because the target language has no slot the same shape as the source.</p>
@@ -2588,12 +2977,14 @@
               <li><b>Never invent a citation.</b> Every entry names its lexicons and commentaries, and where the sources disagree, you get told they disagree.</li>
             </ul>
 
-            <h2>The three labels</h2>
+            <h2>The five labels</h2>
             <p>Every claim carries one, so you always know what you are being handed.</p>
             <ul class="plain">
               <li><span class="conf">Consensus</span> Critical scholarship broadly agrees. You can lean on it.</li>
+              <li><span class="conf">Strong majority</span> Most of the field, with a serious minority holding out. Named where it matters.</li>
               <li><span class="conf">Debated</span> Serious scholars land in different places. Both sides get stated.</li>
               <li><span class="conf">Our read</span> A judgement call made here, and labelled as one.</li>
+              <li><span class="conf">Rejected</span> A claim you will meet elsewhere that the evidence does not support.</li>
             </ul>
           </div>
         </div>
@@ -2602,6 +2993,8 @@
           <p class="eyebrow">Roots &nbsp;&middot;&nbsp; <b>M&eacute;todo</b></p>
           <h1>C&oacute;mo funciona Roots</h1>
           <p class="epigraph">Una palabra no es una definici&oacute;n. Es un rango, y una frase que elige uno de sus sentidos.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Qu&eacute; son estas piezas</h2>
             <p>Estudios breves de palabras sueltas que el espa&ntilde;ol y el ingl&eacute;s tienen que aplanar. Toda traducci&oacute;n pierde algo, no porque los traductores sean descuidados, sino porque el idioma de llegada no tiene una casilla de la misma forma que el de origen.</p>
@@ -2615,12 +3008,14 @@
               <li><b>Nunca inventar una cita.</b> Cada entrada nombra sus l&eacute;xicos y comentarios, y cuando las fuentes no coinciden, se te dice que no coinciden.</li>
             </ul>
 
-            <h2>Las tres etiquetas</h2>
+            <h2>Las cinco etiquetas</h2>
             <p>Cada afirmaci&oacute;n lleva una, para que siempre sepas qu&eacute; te est&aacute;n dando.</p>
             <ul class="plain">
               <li><span class="conf">Consenso</span> La investigaci&oacute;n cr&iacute;tica coincide en general. Te puedes apoyar en eso.</li>
+              <li><span class="conf">Mayor&iacute;a amplia</span> Casi todo el campo, con una minor&iacute;a seria que no lo acepta. Se la nombra cuando importa.</li>
               <li><span class="conf">En debate</span> Estudiosos serios llegan a conclusiones distintas. Se exponen los dos lados.</li>
               <li><span class="conf">Nuestra lectura</span> Un juicio tomado aqu&iacute;, y etiquetado como tal.</li>
+              <li><span class="conf">Rechazado</span> Una afirmaci&oacute;n que vas a encontrar por ah&iacute; y que la evidencia no sostiene.</li>
             </ul>
           </div>
         </div>
@@ -2629,6 +3024,8 @@
           <p class="eyebrow">Roots &nbsp;&middot;&nbsp; <b>M&eacute;todo</b></p>
           <h1>Como Roots funciona</h1>
           <p class="epigraph">Uma palavra n&atilde;o &eacute; uma defini&ccedil;&atilde;o. &Eacute; uma faixa, e uma frase que escolhe um dos sentidos dela.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O que s&atilde;o estas pe&ccedil;as</h2>
             <p>Estudos curtos de palavras isoladas que o portugu&ecirc;s e o ingl&ecirc;s precisam achatar. Toda tradu&ccedil;&atilde;o perde alguma coisa, n&atilde;o porque os tradutores sejam descuidados, mas porque a l&iacute;ngua de chegada n&atilde;o tem um encaixe do mesmo formato que a de origem.</p>
@@ -2642,12 +3039,14 @@
               <li><b>Nunca inventar uma cita&ccedil;&atilde;o.</b> Cada entrada nomeia seus l&eacute;xicos e coment&aacute;rios, e onde as fontes discordam, voc&ecirc; &eacute; avisado de que discordam.</li>
             </ul>
 
-            <h2>As tr&ecirc;s etiquetas</h2>
+            <h2>As cinco etiquetas</h2>
             <p>Toda afirma&ccedil;&atilde;o carrega uma, para que voc&ecirc; sempre saiba o que est&aacute; recebendo.</p>
             <ul class="plain">
               <li><span class="conf">Consenso</span> A pesquisa cr&iacute;tica concorda de modo geral. D&aacute; para se apoiar nisso.</li>
+              <li><span class="conf">Maioria ampla</span> Quase todo o campo, com uma minoria s&eacute;ria que discorda. &Eacute; nomeada quando importa.</li>
               <li><span class="conf">Em debate</span> Estudiosos s&eacute;rios chegam a lugares diferentes. Os dois lados s&atilde;o expostos.</li>
               <li><span class="conf">Nossa leitura</span> Um ju&iacute;zo feito aqui, e rotulado como tal.</li>
+              <li><span class="conf">Rejeitado</span> Uma afirma&ccedil;&atilde;o que voc&ecirc; vai encontrar por a&iacute; e que as evid&ecirc;ncias n&atilde;o sustentam.</li>
             </ul>
           </div>
         </div>
@@ -2662,6 +3061,8 @@
             <p class="tr">r&#257;q&#238;a&#703; &nbsp;&middot;&nbsp; H7549</p>
             <p class="ref">firmament (KJV) &middot; expanse (ESV, NASB) &middot; vault (NIV) &middot; dome (NRSV, JPS)</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What the word is made of</h2>
             <p>The noun comes from the verb <i>r&#257;qa&#703;</i>, and that verb is used overwhelmingly of one thing: <b>beating metal flat</b>. Gold hammered thin for the priest&rsquo;s garments. Censers beaten into plating. Hammered silver overlay on an idol. A noun built from that verb most naturally means a beaten-out sheet.</p>
@@ -2695,6 +3096,8 @@
             <p class="tr">r&#257;q&#238;a&#703; &nbsp;&middot;&nbsp; H7549</p>
             <p class="ref">firmamento (RVR) &middot; expansi&oacute;n (NBLA) &middot; b&oacute;veda (NVI) &middot; c&uacute;pula</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>De qu&eacute; est&aacute; hecha la palabra</h2>
             <p>El sustantivo viene del verbo <i>r&#257;qa&#703;</i>, y ese verbo se usa casi siempre para una sola cosa: <b>golpear metal hasta aplanarlo</b>. Oro martillado fino para las vestiduras del sacerdote. Incensarios convertidos en l&aacute;minas. Plata martillada como recubrimiento de un &iacute;dolo. Un sustantivo formado de ese verbo significa, con toda naturalidad, una l&aacute;mina batida.</p>
@@ -2728,6 +3131,8 @@
             <p class="tr">r&#257;q&#238;a&#703; &nbsp;&middot;&nbsp; H7549</p>
             <p class="ref">firmamento (ARC) &middot; expans&atilde;o &middot; ab&oacute;bada (NVI) &middot; c&uacute;pula</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Do que a palavra &eacute; feita</h2>
             <p>O substantivo vem do verbo <i>r&#257;qa&#703;</i>, e esse verbo &eacute; usado quase sempre para uma coisa s&oacute;: <b>bater metal at&eacute; ficar plano</b>. Ouro martelado fino para as vestes do sacerdote. Incens&aacute;rios transformados em l&acirc;minas. Prata martelada como revestimento de um &iacute;dolo. Um substantivo formado desse verbo significa, com toda naturalidade, uma l&acirc;mina batida.</p>
@@ -2752,6 +3157,14 @@
             <p class="sources"><k>Fontes</k>HALOT e BDB, s.v. &#x05E8;&#x05B8;&#x05E7;&#x05B4;&#x05D9;&#x05E2;&#x05B7; &middot; Westermann, <i>Genesis 1&ndash;11</i> &middot; Wenham, <i>Genesis 1&ndash;15</i> (WBC) &middot; Walton, <i>Genesis 1 as Ancient Cosmology</i> &middot; Seely, <i>WTJ</i> 53&ndash;54 (1991&ndash;92) &middot; Keel, <i>The Symbolism of the Biblical World</i></p>
           </section>
         </div>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/frame" data-xsec="reflections" data-xart="frame">God Speaks Into Your Frame</a></li>
+          <li><span class="sec">Provenance</span><a href="#provenance/prov-genesis" data-xsec="provenance" data-xart="prov-genesis">Genesis 1 and its neighbours</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="roots-aionios" hidden>
@@ -2763,6 +3176,8 @@
             <p class="tr">ai&#333;nios &nbsp;&middot;&nbsp; G166</p>
             <p class="ref">eternal &middot; everlasting (KJV) &middot; of the age to come</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What the word is made of</h2>
             <p>It is an adjective built on the noun <i>ai&#333;n</i>, which means <b>an age</b>: an era, an epoch, a stretch of history. So <i>ai&#333;nios</i> means, at root, &ldquo;pertaining to an age.&rdquo;</p>
@@ -2796,6 +3211,8 @@
             <p class="tr">ai&#333;nios &nbsp;&middot;&nbsp; G166</p>
             <p class="ref">eterno &middot; perpetuo &middot; del siglo venidero</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>De qu&eacute; est&aacute; hecha la palabra</h2>
             <p>Es un adjetivo formado sobre el sustantivo <i>ai&#333;n</i>, que significa <b>una era</b>: una &eacute;poca, un tramo de la historia. As&iacute; que <i>ai&#333;nios</i> significa, en su ra&iacute;z, &laquo;perteneciente a una era&raquo;.</p>
@@ -2829,6 +3246,8 @@
             <p class="tr">ai&#333;nios &nbsp;&middot;&nbsp; G166</p>
             <p class="ref">eterno &middot; perp&eacute;tuo &middot; da era vindoura</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Do que a palavra &eacute; feita</h2>
             <p>&Eacute; um adjetivo formado sobre o substantivo <i>ai&#333;n</i>, que significa <b>uma era</b>: uma &eacute;poca, um trecho da hist&oacute;ria. Ent&atilde;o <i>ai&#333;nios</i> significa, na raiz, &laquo;pertencente a uma era&raquo;.</p>
@@ -2853,6 +3272,13 @@
             <p class="sources"><k>Fontes</k>BDAG s.v. &#945;&#7984;&#974;&#957;&#953;&#959;&#962; &middot; Louw-Nida 67.96, 67.143 &middot; <i>TDNT</i> 1 (Sasse) &middot; Ramelli e Konstan, <i>Terms for Eternity</i> &middot; Davies e Allison, <i>ICC Matthew</i> iii &middot; France, <i>Matthew</i> (NICNT) &middot; Luz, <i>Matthew 21&ndash;28</i> (Hermeneia)</p>
           </section>
         </div>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/life-age" data-xsec="reflections" data-xart="life-age">The Life of the Age</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="roots-praus" hidden>
@@ -2864,6 +3290,8 @@
             <p class="tr">praus &nbsp;&middot;&nbsp; G4239</p>
             <p class="ref">meek (KJV) &middot; gentle (NASB) &middot; humble</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>What English did to it</h2>
             <p>&ldquo;Meek&rdquo; has drifted. It now sounds like timid, harmless, easily pushed around. That is not what the Greek word carried, and the drift makes the beatitude sound like a blessing on people who do not matter.</p>
@@ -2900,6 +3328,8 @@
             <p class="tr">praus &nbsp;&middot;&nbsp; G4239</p>
             <p class="ref">manso &middot; humilde &middot; apacible</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Lo que el idioma le hizo</h2>
             <p>&laquo;Manso&raquo; se corri&oacute; de sentido. Hoy suena a t&iacute;mido, inofensivo, f&aacute;cil de empujar. No es lo que cargaba la palabra griega, y ese desliz hace que la bienaventuranza parezca una bendici&oacute;n a la gente que no cuenta.</p>
@@ -2936,6 +3366,8 @@
             <p class="tr">praus &nbsp;&middot;&nbsp; G4239</p>
             <p class="ref">manso &middot; humilde &middot; brando</p>
           </div>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O que a l&iacute;ngua fez com ela</h2>
             <p>&laquo;Manso&raquo; escorregou de sentido. Hoje soa como t&iacute;mido, inofensivo, f&aacute;cil de empurrar. N&atilde;o &eacute; o que a palavra grega carregava, e esse deslize faz a bem-aventuran&ccedil;a parecer uma b&ecirc;n&ccedil;&atilde;o sobre quem n&atilde;o conta.</p>
@@ -2963,6 +3395,117 @@
             <p class="sources"><k>Fontes</k><i>TDNT</i> 6, s.v. <i>praus</i> &middot; Davies e Allison, <i>ICC Matthew</i> &middot; Betz, <i>The Sermon on the Mount</i> (Hermeneia) &middot; France, <i>Matthew</i> (NICNT) &middot; Salmo 37:11 LXX (36:11)</p>
           </section>
         </div>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/meek" data-xsec="reflections" data-xart="meek">The Meek and the Land</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
+      </article>
+
+      <article id="roots-nephesh" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
+          <p class="eyebrow">Roots 04 &nbsp;&middot;&nbsp; <b>Genesis 2:7</b></p>
+          <h1>Soul</h1>
+          <div class="wordcard">
+            <p class="orig">&#x05E0;&#x05B6;&#x05E4;&#x05B6;&#x05E9;&#x05C1;</p>
+            <p class="tr">nephesh &nbsp;&middot;&nbsp; H5315</p>
+            <p class="ref">soul (KJV) &middot; being (NRSV, ESV, NIV) &middot; creature &middot; life &middot; person</p>
+          </div>
+          <p class="entrydate"><span class="l-en">Revised 7 September 2026</span><span class="l-es">Revisado el 7 de septiembre de 2026</span><span class="l-pt">Revisado em 7 de setembro de 2026</span></p>
+
+          <div class="body">
+            <h2>What the word is made of</h2>
+            <p>The concrete sense is <b>throat</b>. The gullet, the neck. When a psalm says the waters have come up to my <i>nephesh</i>, it means up to my neck, I am drowning. Sheol &ldquo;widens its <i>nephesh</i>&rdquo; and swallows.</p>
+            <p>From throat the word stretches to <b>appetite</b>, the part of you that craves. From appetite to <b>life</b> itself. From life to <b>a person</b>, someone, anyone, the way a ship carries so many souls on board. It turns up about seven hundred and fifty times, and an immaterial deathless part of a human being is not among the senses the lexicons list.</p>
+            <p>And here is the one that settles it. <i>Nephesh</i> can mean a <b>corpse</b>. The purity laws speak of not going near a dead <i>nephesh</i>. Whatever this word names, it is not the thing in you that death cannot touch.</p>
+
+            <h2>What it meant to the people reading it</h2>
+            <p>Genesis 2:7 is a recipe with two ingredients and a result. Dust from the ground, the breath of God into the nostrils, and &ldquo;the man became a living being,&rdquo; <i>nephesh &#7717;ayyah</i>.</p>
+            <p>That phrase is not reserved for humans. Genesis has already used it, two chapters earlier, for the sea creatures, the birds and the livestock, and it uses it again twelve verses later for the animals the man names. It is the category God&rsquo;s creatures share.</p>
+            <p>So the grammar is doing something specific. The man does not <i>receive</i> a <i>nephesh</i>. He <i>becomes</i> one. It is the outcome of the process, not a component installed partway through it. And Genesis closes the loop itself: &ldquo;dust you are, and to dust you shall return.&rdquo; Death, in this story, is verse 7 run backwards.</p>
+
+            <h2>How it drifted</h2>
+            <p>When the Hebrew Bible was put into Greek, <i>nephesh</i> became <i>psych&#275;</i>, and <i>psych&#275;</i> already carried a load the Hebrew never had: the immaterial self, trapped in a body, waiting to get free. That idea is real, and it is a good deal older than Christianity, but it is Greek.</p>
+            <p>You can watch the drift happen in English. The King James renders the identical Hebrew phrase &ldquo;living creature&rdquo; when Genesis 1 is talking about animals and &ldquo;living soul&rdquo; when Genesis 2 is talking about the man. One phrase, two translations, and a whole anthropology smuggled in between them.</p>
+
+            <h2>Why it matters</h2>
+            <p>Because it changes where hope has to come from. If you already own a deathless core, resurrection is a formality and grief is a lapse of nerve. If you are dust that God breathed on, then death is real, and the only hope available is that the God who breathed the first time has promised to breathe again.</p>
+            <p>Which is, as it happens, exactly what the Bible offers. Not the survival of a part. The raising of a person.</p>
+          </div>
+          <section class="apparatus">
+            <h3>Standing</h3>
+            <dl>
+              <dt>Claim 1</dt><dd><span class="conf">Consensus</span> In Genesis 2:7 <i>nephesh &#7717;ayyah</i> means &ldquo;living being / creature,&rdquo; the same category the chapter gives the animals. It does not name an immortal soul.</dd>
+              <dt>Claim 2</dt><dd><span class="conf">Consensus</span> <i>Nephesh</i> denotes the whole living person, described from the angle of life and appetite, rather than a separable part of one.</dd>
+              <dt>Claim 3</dt><dd><span class="conf">Consensus</span> The immortal-soul reading is a later overlay, carried in largely through the Greek <i>psych&#275;</i>.</dd>
+              <dt>Claim 4</dt><dd><span class="conf">Debated</span> Whether <i>any</i> Israelite text imagines a <i>nephesh</i> apart from the body. The standard answer is no; Steiner dissents on a handful of passages, none of them Genesis 2:7.</dd>
+              <dt>Counter-view</dt><dd>Steiner (2015) argues that some texts, notably Ezekiel 13:17&ndash;21 and Rachel&rsquo;s <i>nephesh</i> &ldquo;departing&rdquo; in Genesis 35:18, do picture a soul that can leave the body. Even there the sense is &ldquo;life,&rdquo; not a conscious self with a post-mortem career, and it does not touch this verse.</dd>
+            </dl>
+            <p class="sources"><k>Sources</k>HALOT and BDB, s.v. &#x05E0;&#x05B6;&#x05E4;&#x05B6;&#x05E9;&#x05C1; &middot; Wolff, <i>Anthropology of the Old Testament</i> &middot; Westermann, <i>Genesis 1&ndash;11</i> (Continental) &middot; Wenham, <i>Genesis 1&ndash;15</i> (WBC) &middot; Barr, <i>The Garden of Eden and the Hope of Immortality</i> &middot; Steiner, <i>Disembodied Souls</i> (ANEM 11)</p>
+          </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/dust" data-xsec="reflections" data-xart="dust">Dust and Breath</a></li>
+          <li><span class="sec">Roots</span><a href="#roots/roots-sheol" data-xsec="roots" data-xart="roots-sheol">Hell</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
+      </article>
+
+      <article id="roots-sheol" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
+          <p class="eyebrow">Roots 05 &nbsp;&middot;&nbsp; <b>Psalm 88</b>, and about sixty-five other places</p>
+          <h1>Hell</h1>
+          <div class="wordcard">
+            <p class="orig">&#x05E9;&#x05C1;&#x05B0;&#x05D0;&#x05D5;&#x05B9;&#x05DC;</p>
+            <p class="tr">&#353;&#601;&#702;&#244;l &nbsp;&middot;&nbsp; H7585</p>
+            <p class="ref">hell <i>and</i> grave (KJV) &middot; Sheol (ESV, NRSV) &middot; the realm of the dead (NIV)</p>
+          </div>
+          <p class="entrydate"><span class="l-en">Revised 7 September 2026</span><span class="l-es">Revisado el 7 de septiembre de 2026</span><span class="l-pt">Revisado em 7 de setembro de 2026</span></p>
+
+          <div class="body">
+            <h2>What the word is made of</h2>
+            <p>Nobody knows. The etymology of <i>Sheol</i> is genuinely uncertain, and that is worth saying out loud, because popular word studies love an origin story and this word refuses to give one. What we have instead is about sixty-five occurrences, heavily concentrated in poetry, and they are remarkably consistent about what the place is like.</p>
+
+            <h2>What it meant to the people reading it</h2>
+            <p>It is where everyone goes. Jacob expects to go down to Sheol mourning for his son. Job asks God to <i>hide</i> him there, as a refuge from suffering. Ecclesiastes says the wise and the fool arrive at the same place. It is the destination of the patriarch and the scoundrel alike.</p>
+            <p>The imagery is fixed: <b>down</b>, always down. Darkness, dust, silence, forgetfulness. A pit with bars and gates. What is not there is just as consistent. No fire. No courtroom. No sorting of anybody into anything.</p>
+            <p>Psalm 88 is the sustained example, and it is unsparing. The psalmist counts himself already among the dead, in the regions dark and deep, and asks whether God&rsquo;s wonders and his steadfast love are known in the land of forgetfulness. The expected answer is no. The psalm never turns, and it ends on the word &ldquo;darkness.&rdquo;</p>
+            <p>So Sheol is a destination, not a verdict.</p>
+
+            <h2>Where &ldquo;hell&rdquo; came from</h2>
+            <p>Two steps. First the Greek: the Septuagint renders <i>Sheol</i> with <i>Had&#275;s</i>, importing a term from another culture&rsquo;s underworld, and over centuries the Greek associations come along with it. Then the English: the King James renders the same Hebrew word &ldquo;hell&rdquo; in some places and &ldquo;grave&rdquo; in others, on no consistent principle a reader can see.</p>
+            <p>The clearest tell is Jonah. He prays &ldquo;out of the belly of hell,&rdquo; in the King James, from inside a fish. Whatever he means, he does not mean the place of final punishment. He means the grave, he means as good as dead.</p>
+            <p>And the fire? That is a different word entirely. When the Gospels talk about fire and judgment they almost always say <i>Gehenna</i>, which is not a cosmological realm at all. It is the Valley of Hinnom, a real ravine south of Jerusalem with a grim history behind it. Two words, two concepts, one English word laid over both.</p>
+
+            <h2>Why it matters</h2>
+            <p>Mostly it changes how you read the laments. When Psalm 88 says the dead do not praise God, it is not teaching you the afterlife. It is arguing with God: rescue me <i>now</i>, while I can still say something. That is a prayer, not a doctrine, and the canon kept it without an ending.</p>
+            <p>It also relocates the hope. The Hebrew Bible does not comfort you by telling you a part of you cannot die. It pushes, slowly and late, toward something harder and better: that God raises the dead.</p>
+          </div>
+          <section class="apparatus">
+            <h3>Standing</h3>
+            <dl>
+              <dt>Claim 1</dt><dd><span class="conf">Consensus</span> <i>Sheol</i> does not carry the English &ldquo;hell&rdquo; concept. There is no fire, no torment and no judgment scene attached to it.</dd>
+              <dt>Claim 2</dt><dd><span class="conf">Strong majority</span> In most texts Sheol is the common destination of all the dead, righteous and wicked together, rather than a fate assigned to some.</dd>
+              <dt>Claim 3</dt><dd><span class="conf">Consensus</span> The fiery-judgment imagery in the Gospels enters mainly through <i>Gehenna</i>, the Valley of Hinnom, a separate word with a separate history.</dd>
+              <dt>Claim 4</dt><dd><span class="conf">Rejected</span> That the Old Testament has no afterlife hope at all. Isaiah 26:19 and Daniel 12:2 are real, if late and comparatively rare.</dd>
+              <dt>Counter-view</dt><dd>Some conservative readers harmonise <i>Sheol</i> with a later two-compartment picture of the dead, on the strength of Luke 16. That is a synthesis across the whole canon rather than what the Hebrew texts describe on their own terms, and it should be labelled as one.</dd>
+              <dt>Still to verify</dt><dd>The exact number of times the King James renders <i>Sheol</i> as &ldquo;hell&rdquo; is quoted as thirty-one in a great many places. The count varies by method and is not printed here until it has been checked against a concordance.</dd>
+            </dl>
+            <p class="sources"><k>Sources</k>HALOT and BDB, s.v. &#x05E9;&#x05C1;&#x05B0;&#x05D0;&#x05D5;&#x05B9;&#x05DC; &middot; Johnston, <i>Shades of Sheol</i> (2002) &middot; Bernstein, <i>The Formation of Hell</i> (1993) &middot; Levenson, <i>Resurrection and the Restoration of Israel</i> (2006) &middot; Lewis, &ldquo;Dead, Abode of the,&rdquo; <i>ABD</i> 2 &middot; Bailey, &ldquo;Gehenna: The Topography of Hell,&rdquo; <i>Biblical Archaeologist</i> 49 (1986) &middot; Tromp, <i>Primitive Conceptions of Death and the Nether World</i> (1969)</p>
+          </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/psalm88" data-xsec="reflections" data-xart="psalm88">The Psalm That Ends in the Dark</a></li>
+          <li><span class="sec">Reflections</span><a href="#reflections/dead-rise" data-xsec="reflections" data-xart="dead-rise">The Dead Rise First</a></li>
+          <li><span class="sec">Roots</span><a href="#roots/roots-nephesh" data-xsec="roots" data-xart="roots-nephesh">Soul</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
     </main>
   </div>
@@ -2970,13 +3513,17 @@
 
 <!-- ==================== PROVENANCE ==================== -->
 <div class="view" id="view-provenance" data-section="provenance" hidden>
-  <p class="sectionnote">Where a text came from, how it reached us, and what surrounded it when it was written.</p>
+  <p class="sectionnote">
+    <span class="l-en">Where a text came from, how it reached us, and what surrounded it when it was written.</span>
+    <span class="l-es">De d&oacute;nde vino un texto, c&oacute;mo lleg&oacute; hasta nosotros, y qu&eacute; lo rodeaba cuando se escribi&oacute;.</span>
+    <span class="l-pt">De onde veio um texto, como chegou at&eacute; n&oacute;s, e o que o cercava quando foi escrito.</span>
+  </p>
   <div class="wrap">
     <nav class="contents" aria-label="Provenance">
-      <h2>Studies</h2>
+      <h2><span class="l-en">Studies</span><span class="l-es">Estudios</span><span class="l-pt">Estudos</span></h2>
       <div class="toc-list">
         <a class="toc-item" href="#provenance/prov-about" data-target="prov-about">
-          <span class="n">About</span><span class="t">How Provenance works</span><span class="r">method</span>
+          <span class="n"><span class="l-en">About</span><span class="l-es">Acerca de</span><span class="l-pt">Sobre</span></span><span class="t">How Provenance works</span><span class="r">method</span>
         </a>
         <a class="toc-item" href="#provenance/prov-gospels" data-target="prov-gospels">
           <span class="n">01</span><span class="t">Who wrote the Gospels?</span><span class="r">Luke 1:1&ndash;4</span>
@@ -3012,9 +3559,12 @@
     </nav>
     <main>
       <article id="prov-about">
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance &nbsp;&middot;&nbsp; <b>Method</b></p>
         <h1>How Provenance works</h1>
         <p class="epigraph">Every text has a chain of custody. Knowing it does not weaken the text. It tells you what you are actually holding.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>What these are</h2>
           <p>Roots takes apart single words. Provenance takes apart whole texts: who wrote them, when, out of what, and what happened to them on the way here.</p>
@@ -3028,15 +3578,18 @@
           <ul class="plain">
             <li><b>Both sides get stated.</b> Where serious scholars disagree, you get the disagreement, not just the side we find persuasive.</li>
             <li><b>Never invent a citation.</b> Every entry names its commentaries and critical editions.</li>
-            <li><b>Confidence gets labelled.</b> <span class="conf">Consensus</span> <span class="conf">Debated</span> <span class="conf">Our read</span> on every claim.</li>
+            <li><b>Confidence gets labelled.</b> <span class="conf">Consensus</span> <span class="conf">Strong majority</span> <span class="conf">Debated</span> <span class="conf">Our read</span> <span class="conf">Rejected</span> on every claim.</li>
           </ul>
         </div>
       </article>
 
       <article id="prov-gospels" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 01 &nbsp;&middot;&nbsp; <b>Luke 1:1&ndash;4</b></p>
         <h1>Who wrote the Gospels?</h1>
         <p class="epigraph">Not one of the four names its author inside the text. The names we use are real and early, but they are attached from outside.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>What the texts say about themselves</h2>
           <p>Open Matthew, Mark, Luke or John and look for the author. You will not find one. There is no &ldquo;I, Matthew&rdquo; anywhere in Matthew. The titles, &ldquo;according to Mark&rdquo; and the rest, are headings, not signatures.</p>
@@ -3060,12 +3613,22 @@
           </dl>
           <p class="sources"><k>Sources</k>Luke 1:1&ndash;4 &middot; Papias in Eusebius, <i>Hist. eccl.</i> 3.39 &middot; Irenaeus, <i>Against Heresies</i> 3.1.1 &middot; Hengel, <i>The Four Gospels and the One Gospel</i> &middot; Gathercole, <i>ZNW</i> 104 (2013) &middot; Ehrman, <i>The New Testament</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/luke-checked" data-xsec="reflections" data-xart="luke-checked">Luke Checked</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-adultery" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 02 &nbsp;&middot;&nbsp; <b>John 7:53&ndash;8:11</b></p>
         <h1>The story that floats</h1>
         <p class="epigraph">One of the most loved stories about Jesus is missing from the oldest copies of the Gospel it sits in, and in the copies that have it, it will not stay put.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The evidence</h2>
           <p>The woman caught in adultery, the scribbling in the dust, &ldquo;let him who is without sin cast the first stone.&rdquo; It is not in our earliest and best manuscripts of John. Not in the two oldest papyri that cover this part of the Gospel. Not in Codex Sinaiticus. Not in Codex Vaticanus.</p>
@@ -3082,18 +3645,28 @@
           <h3>Standing</h3>
           <dl>
             <dt>Claim 1</dt><dd><span class="conf">Consensus</span> Among textual critics: not original to John. The external evidence and the floating are decisive.</dd>
-            <dt>Claim 2</dt><dd><span class="conf">One major view</span> That it preserves genuine early Jesus tradition, transmitted independently.</dd>
+            <dt>Claim 2</dt><dd><span class="conf">Debated</span> That it preserves genuine early Jesus tradition, transmitted independently.</dd>
             <dt>Claim 3</dt><dd>Whether it is still Scripture is a canonical judgement rather than a text-critical one, and most traditions answer yes.</dd>
             <dt>Counter-view</dt><dd>A Byzantine-priority minority still argues for authenticity or for its original place in John.</dd>
           </dl>
           <p class="sources"><k>Sources</k>&#120031;66 &middot; &#120031;75 &middot; Codex Sinaiticus &middot; Codex Vaticanus &middot; Metzger, <i>A Textual Commentary on the Greek New Testament</i> &middot; Metzger &amp; Ehrman, <i>The Text of the New Testament</i> &middot; Knust &amp; Wasserman, <i>To Cast the First Stone</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/couldnt-lose" data-xsec="reflections" data-xart="couldnt-lose">The Story the Church Couldn&rsquo;t Lose</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-paul" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 03 &nbsp;&middot;&nbsp; <b>The thirteen letters</b></p>
         <h1>Which letters are Paul&rsquo;s?</h1>
         <p class="epigraph">Thirteen letters carry his name. Critical scholarship is confident about seven, divided about three, and doubtful about three.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The three groups</h2>
           <ul class="plain">
@@ -3120,12 +3693,22 @@
           </dl>
           <p class="sources"><k>Sources</k>Brown, <i>An Introduction to the New Testament</i> &middot; Ehrman, <i>The New Testament</i> &middot; Harrison, <i>The Problem of the Pastoral Epistles</i> (1921) &middot; Richards, <i>Paul and First-Century Letter Writing</i> &middot; Johnson, <i>AB</i> 35A &middot; Marshall, <i>ICC</i> &middot; Romans 16:22</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/church-shape" data-xsec="reflections" data-xart="church-shape">When the Church Changed Shape</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-chronicles" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 04 &nbsp;&middot;&nbsp; <b>2 Samuel 24 &middot; 1 Chronicles 21</b></p>
         <h1>Two drafts of one story</h1>
         <p class="epigraph">The Bible tells David&rsquo;s census twice, and the second telling quietly changes who caused it.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>Put them side by side</h2>
           <p>2 Samuel 24:1 says the anger of the LORD was kindled against Israel, and <b>he incited David</b> to number the people.</p>
@@ -3149,12 +3732,22 @@
           </dl>
           <p class="sources"><k>Sources</k>2 Sam 24:1 with 1 Chron 21:1 &middot; Japhet, <i>I &amp; II Chronicles</i> (OTL) &middot; Knoppers, <i>1 Chronicles 10&ndash;29</i> (AB) &middot; Klein, <i>1 Chronicles</i> (Hermeneia) &middot; McCarter, <i>II Samuel</i> (AB) &middot; 4QSam-a</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/two-drafts" data-xsec="reflections" data-xart="two-drafts">Two Drafts of the Same Story</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-genesis" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 05 &nbsp;&middot;&nbsp; <b>Genesis 1</b></p>
         <h1>Genesis 1 and its neighbours</h1>
         <p class="epigraph">The people who wrote Genesis 1 knew how Babylon told the story. Read side by side, Genesis is answering it.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The other creation story</h2>
           <p>Babylon had an epic in which the world is made out of a war. A young storm god kills the sea goddess and splits her body to form sky and earth. Humans are made afterwards, out of a slain god&rsquo;s blood, to do the labour the gods are tired of. The story climaxes with the building of a temple for the victor.</p>
@@ -3176,18 +3769,30 @@
           <h3>Standing</h3>
           <dl>
             <dt>Claim 1</dt><dd><span class="conf">Consensus</span> The ancient Near Eastern background and the thematic contrasts are real and well documented.</dd>
-            <dt>Claim 2</dt><dd><span class="conf">One major view</span> That Genesis 1 is a deliberate point-by-point rebuttal of the Babylonian epic.</dd>
+            <dt>Claim 2</dt><dd><span class="conf">Debated</span> That Genesis 1 is a deliberate point-by-point rebuttal of the Babylonian epic.</dd>
             <dt>Claim 3</dt><dd><span class="conf">Rejected</span> That Hebrew <i>tehom</i>, &ldquo;the deep,&rdquo; is a demythologised borrowing of the sea goddess&rsquo;s name. It is a shared Semitic root, not a loan-word.</dd>
             <dt>Counter-view</dt><dd>Westermann warns that polemic is not the master key to the chapter, and Tsumura argues the mythic-borrowing case is linguistically overstated.</dd>
           </dl>
           <p class="sources"><k>Sources</k><i>Enuma Elish</i>, in Lambert, <i>Babylonian Creation Myths</i> and Heidel, <i>The Babylonian Genesis</i> &middot; Sarna, <i>JPS Genesis</i> &middot; Westermann, <i>Genesis 1&ndash;11</i> &middot; Walton, <i>Genesis 1 as Ancient Cosmology</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/whose-world" data-xsec="reflections" data-xart="whose-world">Whose World Is This</a></li>
+          <li><span class="sec">Reflections</span><a href="#reflections/frame" data-xsec="reflections" data-xart="frame">God Speaks Into Your Frame</a></li>
+          <li><span class="sec">Roots</span><a href="#roots/roots-raqia" data-xsec="roots" data-xart="roots-raqia">Firmament</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-ham" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 06 &nbsp;&middot;&nbsp; <b>Genesis 9:20&ndash;27</b></p>
         <h1>The verse they bent</h1>
         <p class="epigraph">For three centuries this passage was the Bible&rsquo;s main prop for African slavery. It does not say what it was said to say, and you can check in about a minute.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>Read who is actually cursed</h2>
           <p>Noah wakes, learns what happened in the tent, and speaks. And the one he curses is <b>Canaan</b>. Named, three times, in three verses. Not Ham.</p>
@@ -3212,12 +3817,22 @@
           </dl>
           <p class="sources"><k>Sources</k>Gen 9:25 with Gen 10:6, 15&ndash;19 &middot; Westermann, <i>Genesis 1&ndash;11</i> &middot; Sarna, <i>JPS Genesis</i> &middot; Goldenberg, <i>The Curse of Ham</i> &middot; Haynes, <i>Noah&rsquo;s Curse</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/verse-bent" data-xsec="reflections" data-xart="verse-bent">The Verse They Bent</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-rapture" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 07 &nbsp;&middot;&nbsp; <b>1 Thessalonians 4:17</b></p>
         <h1>Where the rapture came from</h1>
         <p class="epigraph">The verse describes a city walking out to meet an arriving king and escorting him in. The system built on it is about two hundred years old.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The picture in the verse</h2>
           <p>&ldquo;Caught up together with them in the clouds to meet the Lord in the air.&rdquo; The Greek word behind &ldquo;to meet&rdquo; had an ordinary civic use: when an emperor or dignitary approached a city, the citizens went <b>out</b> to meet him, and then escorted him <b>back in</b>. It is a welcome party, not an evacuation.</p>
@@ -3233,7 +3848,7 @@
         <section class="apparatus">
           <h3>Standing</h3>
           <dl>
-            <dt>Claim 1</dt><dd><span class="conf">Majority</span> The welcome-and-escort reading of the &ldquo;meeting&rdquo; language in 4:17.</dd>
+            <dt>Claim 1</dt><dd><span class="conf">Strong majority</span> The welcome-and-escort reading of the &ldquo;meeting&rdquo; language in 4:17.</dd>
             <dt>Claim 2</dt><dd><span class="conf">Strong majority</span> That 4:13&ndash;18 with 5:1&ndash;11 describes one loud, public arrival rather than two.</dd>
             <dt>Claim 3</dt><dd><span class="conf">Consensus</span> Among historians: the pretribulational secret-rapture system dates to the nineteenth century, Darby to Scofield.</dd>
             <dt>Not claimed</dt><dd>That belief in Christ&rsquo;s return is modern. It is not. And the Margaret MacDonald origin story is contested and is left out.</dd>
@@ -3241,12 +3856,22 @@
           </dl>
           <p class="sources"><k>Sources</k>1 Thess 4:17 with Matt 25:6; Acts 28:15 &middot; Malherbe, <i>Letters to the Thessalonians</i> (AB) &middot; Fee, <i>1&ndash;2 Thessalonians</i> (NICNT) &middot; Wright, &ldquo;Farewell to the Rapture&rdquo; &middot; Sandeen, <i>The Roots of Fundamentalism</i> &middot; Weber, <i>Living in the Shadow of the Second Coming</i></p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/dead-rise" data-xsec="reflections" data-xart="dead-rise">The Dead Rise First</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-ruth" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 08 &nbsp;&middot;&nbsp; <b>Ruth &middot; Jonah &middot; Ezra&ndash;Nehemiah</b></p>
         <h1>The canon arguing with itself</h1>
         <p class="epigraph">One book orders men to send away their foreign wives. Another makes a foreign woman the great-grandmother of David. Both are in the Bible.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The policy</h2>
           <p>Ezra and Nehemiah record a hard measure taken by a small, fragile community returning from exile: the men who had married foreign women are to separate from them, and from the children. It is in the text, plainly, and it is wrenching to read.</p>
@@ -3264,16 +3889,26 @@
             <dt>Claim 1</dt><dd><span class="conf">Consensus</span> The Ezra&ndash;Nehemiah policy. It is simply in the text.</dd>
             <dt>Claim 2</dt><dd><span class="conf">Strong majority</span> Ruth and Jonah function as canonical counter-voices on the question of the outsider.</dd>
             <dt>Claim 3</dt><dd><span class="conf">Debated</span> That either book was written specifically to rebut Ezra. The dating is genuinely contested, and some place them earlier.</dd>
-            <dt>Claim 4</dt><dd><span class="conf">One major view</span> That Ezra&rsquo;s concern was communal survival and religious integrity rather than ethnic hatred. Widely held, and it does not soften the human cost.</dd>
+            <dt>Claim 4</dt><dd><span class="conf">Debated</span> That Ezra&rsquo;s concern was communal survival and religious integrity rather than ethnic hatred. Widely held, and it does not soften the human cost.</dd>
           </dl>
           <p class="sources"><k>Sources</k>Ezra 9&ndash;10; Neh 13:23&ndash;27 &middot; Ruth 1:16; 4:13&ndash;22 &middot; Jonah 4:2, 10&ndash;11 &middot; with Deut 23:3; Exod 34:6 &middot; LaCocque, <i>Ruth</i> &middot; Eskenazi &amp; Frymer-Kensky, <i>Ruth</i> (JPS) &middot; Sasson, <i>Jonah</i> (AB) &middot; Blenkinsopp, <i>Ezra&ndash;Nehemiah</i> (OTL)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/moabite" data-xsec="reflections" data-xart="moabite">A Moabite in the Family Tree</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-wisdom" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 09 &nbsp;&middot;&nbsp; <b>Proverbs &middot; Job &middot; Ecclesiastes</b></p>
         <h1>When the rule breaks</h1>
         <p class="epigraph">Proverbs says the righteous prosper. Job says the wicked die rich and comfortable. Ecclesiastes says the righteous often get what the wicked deserved. All three are kept.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The three positions</h2>
           <p><b>Proverbs</b> states the rule. The righteous will never be uprooted; the wicked will not remain in the land. It is confident, and it is meant to be.</p>
@@ -3294,12 +3929,22 @@
           </dl>
           <p class="sources"><k>Sources</k>Prov 10:27&ndash;30; 16:8 &middot; Job 21:7&ndash;13 &middot; Eccl 8:14 &middot; Fox, <i>Proverbs</i> (AYB) &middot; Clines, <i>Job 21&ndash;37</i> (WBC) &middot; Seow, <i>Ecclesiastes</i> (AYB) &middot; Crenshaw, <i>Old Testament Wisdom</i> &middot; Koch, &ldquo;Is There a Doctrine of Retribution?&rdquo;</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/rule-breaks" data-xsec="reflections" data-xart="rule-breaks">When the Rule Breaks</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
 
       <article id="prov-cheek" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Provenance 10 &nbsp;&middot;&nbsp; <b>Matthew 5:38&ndash;42</b></p>
         <h1>Turn the other cheek</h1>
         <p class="epigraph">Not a command to be a doormat. In an honour-shame culture under occupation, these are staged scenes of refusing humiliation without hitting back.</p>
+        <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>Three scenes, not three rules</h2>
           <p>Jesus gives three quick pictures: the slap on the right cheek, the lawsuit over a tunic, the compelled mile. Each one is specific, and each one had a recognisable social shape to the people listening.</p>
@@ -3316,12 +3961,19 @@
           <h3>Standing</h3>
           <dl>
             <dt>Claim 1</dt><dd><span class="conf">Consensus</span> The passage rejects violent retaliation and grounds the response in God&rsquo;s character.</dd>
-            <dt>Claim 2</dt><dd><span class="conf">One major view</span> That the three examples are active responses rather than passivity. Growing, not settled.</dd>
-            <dt>Claim 3</dt><dd><span class="conf">Contested</span> Wink&rsquo;s exact reconstructions of the backhand and the mile.</dd>
+            <dt>Claim 2</dt><dd><span class="conf">Debated</span> That the three examples are active responses rather than passivity. Growing, not settled.</dd>
+            <dt>Claim 3</dt><dd><span class="conf">Debated</span> Wink&rsquo;s exact reconstructions of the backhand and the mile.</dd>
             <dt>Counter-view</dt><dd>Most critical commentators read 5:38&ndash;42 first as renouncing personal vengeance through hyperbolic scenarios, and treat the tactical details as insightful but under-evidenced.</dd>
           </dl>
           <p class="sources"><k>Sources</k>Matt 5:38&ndash;42 with Exod 22:26&ndash;27; Matt 27:32 &middot; Wink, <i>Engaging the Powers</i> &middot; Davies &amp; Allison, <i>ICC Matthew</i> &middot; Luz, <i>Matthew 1&ndash;7</i> &middot; France, <i>Matthew</i> (NICNT) &middot; Stassen, <i>JBL</i> 122 (2003)</p>
         </section>
+        <aside class="xref">
+          <h4><span class="l-en">Also on this passage</span><span class="l-es">Tambi&eacute;n sobre este pasaje</span><span class="l-pt">Tamb&eacute;m sobre esta passagem</span></h4>
+          <ul>
+          <li><span class="sec">Reflections</span><a href="#reflections/third-way" data-xsec="reflections" data-xart="third-way">The Third Way</a></li>
+          </ul>
+          <p class="why"><span class="l-en">Same passage, same worksheet, different job. Reflections preaches it, Roots takes a single word apart, Provenance asks where the text came from.</span><span class="l-es">Mismo pasaje, misma hoja de trabajo, distinto trabajo. Reflections lo predica, Roots desarma una palabra, Provenance pregunta de d&oacute;nde vino el texto.</span><span class="l-pt">Mesma passagem, mesma folha de trabalho, trabalho diferente. Reflections prega, Roots desmonta uma palavra, Provenance pergunta de onde o texto veio.</span></p>
+        </aside>
       </article>
     </main>
   </div>
@@ -3361,6 +4013,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Approach</b></p>
           <h1>What Wonder is</h1>
           <p class="epigraph">Children can hold more than we give them. What they cannot hold is being told something they will later have to unlearn.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>The problem it&rsquo;s solving</h2>
             <p>Most children&rsquo;s Bible material solves for tidiness. Stories get smoothed, hard parts get cut, and a child is handed a version they will have to unlearn at nineteen, usually at the exact moment they are deciding whether any of it is true.</p>
@@ -3387,6 +4041,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Enfoque</b></p>
           <h1>Qu&eacute; es Wonder</h1>
           <p class="epigraph">Los ni&ntilde;os pueden con m&aacute;s de lo que les damos. Con lo que no pueden es con que les digan algo que despu&eacute;s tendr&aacute;n que desaprender.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>El problema que resuelve</h2>
             <p>Casi todo el material b&iacute;blico para ni&ntilde;os busca que todo quede ordenado. Se suavizan las historias, se recortan las partes dif&iacute;ciles, y al ni&ntilde;o se le entrega una versi&oacute;n que tendr&aacute; que desaprender a los diecinueve, justo en el momento en que est&aacute; decidiendo si algo de esto es verdad.</p>
@@ -3413,6 +4069,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Abordagem</b></p>
           <h1>O que &eacute; Wonder</h1>
           <p class="epigraph">As crian&ccedil;as aguentam mais do que lhes damos. O que elas n&atilde;o aguentam &eacute; que lhes digam algo que depois ter&atilde;o que desaprender.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>O problema que resolve</h2>
             <p>Quase todo material b&iacute;blico infantil busca deixar tudo arrumado. As hist&oacute;rias s&atilde;o suavizadas, as partes dif&iacute;ceis s&atilde;o cortadas, e a crian&ccedil;a recebe uma vers&atilde;o que ter&aacute; que desaprender aos dezenove, exatamente no momento em que est&aacute; decidindo se algo disso &eacute; verdade.</p>
@@ -3441,6 +4099,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Ages</b></p>
           <h1>Three age bands</h1>
           <p class="lede">The same honesty at three different depths. A child should be able to move up a band without anything they learned below being contradicted.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <div class="stage">
               <span class="lbl">Ages 4 to 7</span>
@@ -3470,6 +4130,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Edades</b></p>
           <h1>Tres grupos de edad</h1>
           <p class="lede">La misma honestidad en tres profundidades. Un ni&ntilde;o deber&iacute;a poder subir de grupo sin que nada de lo aprendido antes quede contradicho.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <div class="stage">
               <span class="lbl">De 4 a 7 a&ntilde;os</span>
@@ -3499,6 +4161,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Idades</b></p>
           <h1>Tr&ecirc;s faixas et&aacute;rias</h1>
           <p class="lede">A mesma honestidade em tr&ecirc;s profundidades. Uma crian&ccedil;a deveria poder subir de faixa sem que nada do que aprendeu antes seja contradito.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <div class="stage">
               <span class="lbl">De 4 a 7 anos</span>
@@ -3530,6 +4194,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Sample, ages 8 to 11</b></p>
           <h1>What did they think the sky was?</h1>
           <p class="lede">A worked example of the format. Genesis 1:6&ndash;8, and the same word Roots takes apart for adults.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Start with a question</h2>
             <p>If you lived a very long time ago, before anybody had been up there, what would you think the sky was?</p>
@@ -3555,7 +4221,7 @@
               <dl>
                 <dt>Do not say</dt><dd>&ldquo;Actually it means the atmosphere.&rdquo; That is not what the word means, the child will find out eventually, and finding out is exactly the moment this whole approach exists to protect.</dd>
                 <dt>If asked</dt><dd>&ldquo;So was the Bible wrong?&rdquo; The honest answer: it was not trying to answer that question. It was written by people who pictured the world the way everyone around them did, and God spoke through them anyway, in words they could understand.</dd>
-                <dt>Goes with</dt><dd>Roots 01, <i>Firmament</i>, which is the adult version of this same page.</dd>
+                <dt>Goes with</dt><dd><a href="#roots/roots-raqia" data-xsec="roots" data-xart="roots-raqia">Roots 01, <i>Firmament</i></a>, which is the adult version of this same page.</dd>
               </dl>
             </section>
           </div>
@@ -3565,6 +4231,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Ejemplo, de 8 a 11 a&ntilde;os</b></p>
           <h1>&iquest;Qu&eacute; cre&iacute;an que era el cielo?</h1>
           <p class="lede">Un ejemplo trabajado del formato. G&eacute;nesis 1:6&ndash;8, y la misma palabra que Roots desarma para adultos.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Empieza con una pregunta</h2>
             <p>Si vivieras hace much&iacute;simo tiempo, antes de que nadie hubiera subido hasta all&aacute;, &iquest;qu&eacute; pensar&iacute;as que es el cielo?</p>
@@ -3590,7 +4258,7 @@
               <dl>
                 <dt>No digas</dt><dd>&laquo;En realidad significa la atm&oacute;sfera.&raquo; No es lo que significa la palabra, el ni&ntilde;o lo va a descubrir tarde o temprano, y ese descubrimiento es justo el momento que todo este enfoque existe para proteger.</dd>
                 <dt>Si preguntan</dt><dd>&laquo;&iquest;Entonces la Biblia se equivoc&oacute;?&raquo; La respuesta honesta: no estaba tratando de responder esa pregunta. La escribieron personas que imaginaban el mundo como todos a su alrededor, y Dios habl&oacute; por medio de ellas de todos modos, con palabras que pod&iacute;an entender.</dd>
-                <dt>Va con</dt><dd>Roots 01, <i>Firmamento</i>, que es la versi&oacute;n adulta de esta misma p&aacute;gina.</dd>
+                <dt>Va con</dt><dd><a href="#roots/roots-raqia" data-xsec="roots" data-xart="roots-raqia">Roots 01, <i>Firmamento</i></a>, que es la versi&oacute;n adulta de esta misma p&aacute;gina.</dd>
               </dl>
             </section>
           </div>
@@ -3600,6 +4268,8 @@
           <p class="eyebrow">Wonder &nbsp;&middot;&nbsp; <b>Exemplo, de 8 a 11 anos</b></p>
           <h1>O que eles achavam que era o c&eacute;u?</h1>
           <p class="lede">Um exemplo trabalhado do formato. G&ecirc;nesis 1:6&ndash;8, e a mesma palavra que Roots desmonta para adultos.</p>
+          <p class="entrydate"><span class="l-en">Revised 6 September 2026</span><span class="l-es">Revisado el 6 de septiembre de 2026</span><span class="l-pt">Revisado em 6 de setembro de 2026</span></p>
+
           <div class="body">
             <h2>Comece com uma pergunta</h2>
             <p>Se voc&ecirc; vivesse h&aacute; muit&iacute;ssimo tempo, antes de algu&eacute;m ter subido at&eacute; l&aacute;, o que voc&ecirc; acharia que &eacute; o c&eacute;u?</p>
@@ -3625,7 +4295,7 @@
               <dl>
                 <dt>N&atilde;o diga</dt><dd>&laquo;Na verdade significa a atmosfera.&raquo; N&atilde;o &eacute; o que a palavra significa, a crian&ccedil;a vai descobrir cedo ou tarde, e essa descoberta &eacute; exatamente o momento que toda esta abordagem existe para proteger.</dd>
                 <dt>Se perguntarem</dt><dd>&laquo;Ent&atilde;o a B&iacute;blia errou?&raquo; A resposta honesta: ela n&atilde;o estava tentando responder essa pergunta. Foi escrita por pessoas que imaginavam o mundo como todos ao redor delas, e Deus falou por meio delas mesmo assim, com palavras que elas podiam entender.</dd>
-                <dt>Vai com</dt><dd>Roots 01, <i>Firmamento</i>, que &eacute; a vers&atilde;o adulta desta mesma p&aacute;gina.</dd>
+                <dt>Vai com</dt><dd><a href="#roots/roots-raqia" data-xsec="roots" data-xart="roots-raqia">Roots 01, <i>Firmamento</i></a>, que &eacute; a vers&atilde;o adulta desta mesma p&aacute;gina.</dd>
               </dl>
             </section>
           </div>
@@ -3637,7 +4307,11 @@
 
 <!-- ==================== COLOPHON ==================== -->
 <div class="view" id="view-colophon" data-section="colophon" hidden>
-  <p class="sectionnote">Who makes this, how, and what is still unfinished.</p>
+  <p class="sectionnote">
+    <span class="l-en">Who makes this, how, and what is still unfinished.</span>
+    <span class="l-es">Qui&eacute;n hace esto, c&oacute;mo, y qu&eacute; sigue sin terminar.</span>
+    <span class="l-pt">Quem faz isto, como, e o que ainda est&aacute; por terminar.</span>
+  </p>
   <div class="wrap">
     <nav class="contents" aria-label="Colophon">
       <h2>Colophon</h2>
@@ -3651,13 +4325,19 @@
         <a class="toc-item" href="#colophon/col-status" data-target="col-status">
           <span class="n">03</span><span class="t">What&rsquo;s finished, what isn&rsquo;t</span><span class="r">honest status</span>
         </a>
+        <a class="toc-item" href="#colophon/col-coming" data-target="col-coming">
+          <span class="n">04</span><span class="t">What is coming</span><span class="r">not yet</span>
+        </a>
       </div>
     </nav>
     <main>
       <article id="col-what">
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Colophon 01 &nbsp;&middot;&nbsp; <b>The premise</b></p>
         <h1>What this is</h1>
         <p class="epigraph">A colophon is the note at the back of a manuscript saying who made it, where, and how. This is that note.</p>
+        <p class="entrydate"><span class="l-en">Revised 7 September 2026</span><span class="l-es">Revisado el 7 de septiembre de 2026</span><span class="l-pt">Revisado em 7 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The premise</h2>
           <p>Most people are handed two options. Either the Bible is a flat, seamless book and any difficulty is a threat to be argued away, or it is a pile of contradictions and the honest move is to walk. Both options ask you to stop looking.</p>
@@ -3673,15 +4353,22 @@
             <li><b>Wonder.</b> The same honesty, built for children, so nothing has to be unlearned later.</li>
           </ul>
 
+          <h2>Who makes this</h2>
+          <p>Marginalia is written by Irwin Ortega. The method it runs on is the inductive exegetical procedure taught in the biblical exposition and exegesis practicum sequence at Life Pacific University, worked station by station over every passage before a word of the public piece is written.</p>
+          <p>That is the whole of the qualification and it is stated plainly for the same reason everything else here is, so that you can weigh it. The scholarship this site leans on is not mine. It is named on every page, and where the people who produced it disagree with each other, the disagreement is printed rather than resolved quietly in my favour.</p>
+
           <h2>Marginalia, the word</h2>
           <p>Marginalia are the notes readers write in the margins: the questions, the objections, the cross-references, the places somebody stopped and argued with the page. That is the posture here. Not scribbling over the text, and not leaving it untouched either.</p>
         </div>
       </article>
 
       <article id="col-method" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Colophon 02 &nbsp;&middot;&nbsp; <b>Method &amp; sources</b></p>
         <h1>How the work is done</h1>
         <p class="epigraph">Everything published here sits on top of a worksheet that took a great deal longer than the piece did.</p>
+        <p class="entrydate"><span class="l-en">Revised 7 September 2026</span><span class="l-es">Revisado el 7 de septiembre de 2026</span><span class="l-pt">Revisado em 7 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>The sequence</h2>
           <p>Every passage runs through the same inductive exegetical procedure before anything gets written for publication. Observation first, with no interpretation allowed: read the passage and its book, write down every question it raises, look for patterns and contrasts, compare translations and note where they diverge.</p>
@@ -3691,12 +4378,21 @@
           <h2>The three rules</h2>
           <ul class="plain">
             <li><b>Never invent a citation.</b> Every reference is verified against publisher, library or journal records. Anything that cannot be confirmed gets dropped rather than softened.</li>
-            <li><b>Label the confidence.</b> <span class="conf">Consensus</span> <span class="conf">Debated</span> <span class="conf">Our read</span> Every substantive claim carries one, so you always know whether you are being handed settled ground or a judgement call.</li>
+            <li><b>Label the confidence.</b> <span class="conf">Consensus</span> <span class="conf">Strong majority</span> <span class="conf">Debated</span> <span class="conf">Our read</span> <span class="conf">Rejected</span> Every substantive claim carries one, so you always know whether you are being handed settled ground or a judgement call.</li>
             <li><b>State the counter-view.</b> Where serious scholars disagree, the disagreement gets printed, named, and given its best form.</li>
           </ul>
 
           <h2>What counts as a source</h2>
           <p>Critical commentaries, the standard lexicons and dictionaries, critical editions, and peer-reviewed work. Popular-level books are read but are not load-bearing. Where a claim rests on one scholar&rsquo;s reconstruction rather than a field consensus, that is said out loud.</p>
+
+          <h2>Corrections</h2>
+          <p>If something here is wrong it should be fixed, not defended. A site that labels its own confidence levels has no business being precious about a mistake, and the corrections that have been made are noted on <a href="#colophon/col-status" data-xsec="colophon" data-xart="col-status">the status page</a>.</p>
+          <!-- CONTACT SLOT: publish the address here and in col-coming once it exists. -->
+          <p>A contact address for corrections and questions is being set up and will be published here. Until it is, this is a genuine gap, and it is listed as one.</p>
+
+          <h2>Where else this lives</h2>
+          <!-- CHANNEL SLOT: Instagram handle and newsletter link go here when chosen. -->
+          <p>Short pieces drawn from the same research are planned for an Instagram account, and a newsletter after that. Neither is open yet. Both will be linked from this page when they are, and not before.</p>
 
           <h2>A note on the voice</h2>
           <p>Plain language, contractions, no em dashes, and no jargon left untranslated. Where a church word is unavoidable, the plain version comes first and the technical term second. Clarity is treated as a form of respect rather than a stylistic preference.</p>
@@ -3704,41 +4400,86 @@
       </article>
 
       <article id="col-status" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
         <p class="eyebrow">Colophon 03 &nbsp;&middot;&nbsp; <b>Honest status</b></p>
         <h1>What&rsquo;s finished, what isn&rsquo;t</h1>
         <p class="epigraph">This is a working mock-up, not a launched site. It seems only right to say which parts are real.</p>
+        <p class="entrydate"><span class="l-en">Revised 7 September 2026</span><span class="l-es">Revisado el 7 de septiembre de 2026</span><span class="l-pt">Revisado em 7 de setembro de 2026</span></p>
+
         <div class="body">
           <h2>Finished</h2>
           <ul class="plain">
-            <li><b>Encounter.</b> All four stages, the unit progression, the session shape, and the plain-language presentation. Complete as a description of the pathway.</li>
+            <li><b>Reflections.</b> All fifteen sermons are up, each printed with the exegetical apparatus it rests on.</li>
             <li><b>Provenance.</b> Ten studies, each drawn from a full exegesis worksheet.</li>
-            <li><b>Roots.</b> The method, and the word studies published so far.</li>
+            <li><b>Roots.</b> The method and five word studies.</li>
+            <li><b>Encounter.</b> All four stages, the unit progression, the session shape and the plain-language presentation. Complete as a description of the pathway.</li>
           </ul>
 
           <h2>In progress</h2>
           <ul class="plain">
-            <li><b>Reflections.</b> Fifteen sermons are written. Not all of them are up here yet.</li>
-            <li><b>Roots.</b> More word studies are drafted than are published.</li>
+            <li><b>Translation.</b> The navigation, Encounter, Roots and Wonder are in English, Spanish and Portuguese. Reflections and Provenance are English only, and each entry says so when you switch languages rather than quietly showing you the wrong thing.</li>
+            <li><b>Portuguese.</b> The Portuguese has not been read by a native speaker. Treat it as a working draft.</li>
+            <li><b>Roots.</b> More word studies exist as finished worksheets than are published here.</li>
           </ul>
 
           <h2>Not started</h2>
           <ul class="plain">
-            <li><b>Wonder.</b> The approach, the age bands and one worked sample are written. The curriculum is not, and it should not be built until a proper review of the existing children&rsquo;s material in this space has been done. The section says so on its own page.</li>
-            <li><b>Spanish and Portuguese.</b> Translations of several sections exist in the markup and are currently switched off. They will come back on when the content stops moving.</li>
+            <li><b>The Wonder curriculum.</b> The approach, the age bands and one worked sample are written. The curriculum is not, and it should not be built until a proper review of the existing children&rsquo;s material has been done. See <a href="#colophon/col-coming" data-xsec="colophon" data-xart="col-coming">what is coming</a>.</li>
+            <li><b>A contact address, an Instagram account and a newsletter.</b> All three are named on <a href="#colophon/col-method" data-xsec="colophon" data-xart="col-method">How the work is done</a> as gaps rather than as things that exist.</li>
           </ul>
 
-          <h2>Corrections</h2>
-          <p>If something here is wrong, it should be fixed rather than defended. A site that labels its own confidence levels has no business being precious about a mistake.</p>
+          <h2>Corrections made</h2>
+          <ul class="plain">
+            <li><b>7 September 2026.</b> The confidence labels were being used with eight different names against a legend that defined three. They are now five, defined once, and applied everywhere.</li>
+            <li><b>7 September 2026.</b> Twelve Reflections were published without the standing line that says where each claim sits. They have it now.</li>
+            <li><b>7 September 2026.</b> A claim about how many times the King James renders <i>Sheol</i> as &ldquo;hell&rdquo; is quoted everywhere as thirty-one. It is not printed here, because it has not been checked against a concordance. See <a href="#roots/roots-sheol" data-xsec="roots" data-xart="roots-sheol">Hell</a>.</li>
+          </ul>
+
+          <h2>What this site is not, yet</h2>
+          <p>It has no home of its own. It is one HTML file, and it is shared by link rather than published at an address. That is a deliberate stage, not an oversight, but it is worth knowing when you are deciding how much weight to put on it.</p>
+        </div>
+      </article>
+
+      <article id="col-coming" hidden>
+        <p class="xlate"><span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. El texto que sigue est&aacute; en ingl&eacute;s.</span><span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>
+        <p class="eyebrow">Colophon 04 &nbsp;&middot;&nbsp; <b>Not yet</b></p>
+        <h1>What is coming</h1>
+        <p class="epigraph">The work that is planned, described honestly, so that nothing on this site has to pretend it is further along than it is.</p>
+        <p class="entrydate"><span class="l-en">Revised 7 September 2026</span><span class="l-es">Revisado el 7 de septiembre de 2026</span><span class="l-pt">Revisado em 7 de setembro de 2026</span></p>
+
+        <div class="body">
+          <h2>Wonder</h2>
+          <p>The same honesty, built for children, so that nothing they are told has to be unlearned at nineteen. The approach, three age bands and one worked sample are written and you can read them: <a href="#wonder/wonder-about" data-xsec="wonder" data-xart="wonder-about">Wonder</a>.</p>
+          <p>The curriculum itself is not written, and it will not be until a proper review of what already exists in children&rsquo;s biblical material has been done and the real gaps are known. Building it before that would just add another opinionated series to a crowded shelf. Wonder is off the main navigation until then, which seemed more honest than giving an empty room its own door.</p>
+
+          <h2>More word studies</h2>
+          <p>Roots publishes five. More are drafted as full worksheets and will go up as they are checked.</p>
+
+          <h2>A way to reach me</h2>
+          <p>There is no contact address on this site yet, which is a real gap on a site that invites correction. One is being set up and will appear on <a href="#colophon/col-method" data-xsec="colophon" data-xart="col-method">How the work is done</a>.</p>
+
+          <h2>The rest of the translation</h2>
+          <p>Spanish and Portuguese cover the navigation, Encounter, Roots and Wonder. Reflections and Provenance are still English, and each entry says so when you switch. That gap closes as the content stops moving.</p>
         </div>
       </article>
     </main>
   </div>
 </div>
 
+<div class="view" id="view-search" hidden>
+  <div class="wrap wrap-wide">
+    <main>
+      <h1 id="qhead"><span class="l-en">Search</span><span class="l-es">Buscar</span><span class="l-pt">Buscar</span></h1>
+      <p class="lede" id="qcount"></p>
+      <div id="qresults"></div>
+    </main>
+  </div>
+</div>
+
 <footer class="siteftr">
-  <span class="l-en">Marginalia &middot; a working mock-up &middot; Reflections &middot; Encounter &middot; Roots &middot; Provenance &middot; Wonder &middot; Colophon</span>
-  <span class="l-es">Marginalia &middot; una maqueta de trabajo &middot; Reflections &middot; Encounter &middot; Roots &middot; Provenance &middot; Wonder &middot; Colophon</span>
-  <span class="l-pt">Marginalia &middot; uma maquete de trabalho &middot; Reflections &middot; Encounter &middot; Roots &middot; Provenance &middot; Wonder &middot; Colophon</span>
+  <span class="l-en">Marginalia &middot; Reflections &middot; Encounter &middot; Roots &middot; Provenance &middot; Wonder &middot; Colophon<br>Revised 7 September 2026 &middot; <a href="#colophon/col-status" data-xsec="colophon" data-xart="col-status">what is finished and what is not</a></span>
+  <span class="l-es">Marginalia &middot; Reflections &middot; Encounter &middot; Roots &middot; Provenance &middot; Wonder &middot; Colophon<br>Revisado el 7 de septiembre de 2026 &middot; <a href="#colophon/col-status" data-xsec="colophon" data-xart="col-status">qu&eacute; est&aacute; terminado y qu&eacute; no</a></span>
+  <span class="l-pt">Marginalia &middot; Reflections &middot; Encounter &middot; Roots &middot; Provenance &middot; Wonder &middot; Colophon<br>Revisado em 7 de setembro de 2026 &middot; <a href="#colophon/col-status" data-xsec="colophon" data-xart="col-status">o que est&aacute; pronto e o que n&atilde;o est&aacute;</a></span>
 </footer>
 
 <script>
@@ -3747,7 +4488,7 @@
 
     /* ---------------- theme ---------------- */
     var themeBtn = document.getElementById('themeBtn');
-    function sysDark(){ return window.matchMedia('(prefers-color-scheme: dark)').matches; }
+    function sysDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
     function curTheme(){ var t = root.getAttribute('data-theme'); return t ? t : (sysDark() ? 'dark' : 'light'); }
     function paintTheme(){ themeBtn.textContent = curTheme() === 'dark' ? 'Light' : 'Dark'; }
     try{
@@ -3763,10 +4504,10 @@
     });
 
     /* ---------------- language ----------------
-       Spanish and Portuguese markup is retained under .l-es / .l-pt but the
-       switcher is off. Flip LANGS_ENABLED to true and drop the `hidden`
-       attribute on .langpick to turn all three languages back on. */
-    var LANGS_ENABLED = false;
+       Entries with no .l-es / .l-pt block stay in English and carry a
+       translated .xlate notice saying so, so partial coverage degrades
+       honestly instead of blanking the page. */
+    var LANGS_ENABLED = true;
 
     var langpick = document.querySelector('.langpick');
     var langBtns = Array.prototype.slice.call(document.querySelectorAll('.langpick button'));
@@ -3778,11 +4519,13 @@
       langBtns.forEach(function(b){
         b.setAttribute('aria-current', b.dataset.lang === curLang() ? 'true' : 'false');
       });
+      root.setAttribute('lang', curLang());
     }
     function setLang(lang){
       root.setAttribute('data-elang', lang);
       try{ localStorage.setItem('marginalia-lang', lang); }catch(e){}
       paintLang();
+      buildIndex();
     }
     if(LANGS_ENABLED){
       try{
@@ -3795,17 +4538,22 @@
       });
       document.addEventListener('click', function(e){
         var t = e.target.closest ? e.target.closest('[data-setlang]') : null;
-        if(t){ setLang(t.getAttribute('data-setlang')); }
+        if(t){ e.preventDefault(); setLang(t.getAttribute('data-setlang')); }
       });
     }
     if(!LANGS_ENABLED || !root.getAttribute('data-elang')) root.setAttribute('data-elang', 'en');
     paintLang();
 
     /* ---------------- per-view article swapping ---------------- */
+    var LABEL = {
+      reflections:'Reflections', encounter:'Encounter', roots:'Roots',
+      provenance:'Provenance', wonder:'Wonder', colophon:'Colophon'
+    };
+
     function makeSwapper(view){
       var items = Array.prototype.slice.call(view.querySelectorAll('.toc-item'));
       var articles = Array.prototype.slice.call(view.querySelectorAll('main > article'));
-      function show(id){
+      function show(id, focus){
         var match = null;
         articles.forEach(function(a){ if(a.id === id) match = a; });
         if(!match) match = articles[0];
@@ -3821,12 +4569,17 @@
         items.forEach(function(t){
           t.setAttribute('aria-current', t.dataset.target === match.id ? 'true' : 'false');
         });
+        /* move focus to the heading so a screen reader hears the change */
+        if(focus){
+          var h = match.querySelector('h1');
+          if(h){ h.setAttribute('tabindex','-1'); h.focus({preventScroll:true}); }
+        }
         return match.id;
       }
       items.forEach(function(t){
         t.addEventListener('click', function(e){
           e.preventDefault();
-          var id = show(t.dataset.target);
+          var id = show(t.dataset.target, true);
           setHash(view.dataset.section, id);
           window.scrollTo(0, 0);
         });
@@ -3839,33 +4592,141 @@
     var swap = {};
     order.forEach(function(name){
       var v = document.getElementById('view-' + name);
-      if(v){ views[name] = v; swap[name] = makeSwapper(v); }
+      if(v){
+        views[name] = v;
+        swap[name] = makeSwapper(v);
+        var m = v.querySelector('main');
+        if(m){ m.setAttribute('role','tabpanel'); m.setAttribute('aria-live','polite'); }
+      }
     });
 
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var searchView = document.getElementById('view-search');
 
     function setHash(section, article){
       try{ history.replaceState(null, '', '#' + section + (article ? '/' + article : '')); }catch(e){}
     }
 
-    function showSection(section, article, scroll){
+    function showSection(section, article, scroll, focus){
       if(!views[section]) section = 'reflections';
+      if(searchView) searchView.hidden = true;
       root.setAttribute('data-accent', section);
       order.forEach(function(name){
         if(views[name]) views[name].hidden = name !== section;
       });
       tabs.forEach(function(t){
         t.setAttribute('aria-current', t.dataset.section === section ? 'true' : 'false');
+        t.setAttribute('aria-selected', t.dataset.section === section ? 'true' : 'false');
       });
-      var id = swap[section](article);
+      var id = swap[section](article, focus);
       try{ localStorage.setItem('marginalia-section', section); }catch(e){}
       if(scroll) window.scrollTo(0, 0);
       setHash(section, id);
     }
 
     tabs.forEach(function(t){
-      t.addEventListener('click', function(){ showSection(t.dataset.section, null, true); });
+      t.addEventListener('click', function(){ showSection(t.dataset.section, null, true, true); });
     });
+
+    /* ---------------- cross-section links ---------------- */
+    document.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('[data-xsec]') : null;
+      if(!a) return;
+      e.preventDefault();
+      showSection(a.getAttribute('data-xsec'), a.getAttribute('data-xart'), true, true);
+    });
+
+    /* ---------------- search ---------------- */
+    var q = document.getElementById('q');
+    var qresults = document.getElementById('qresults');
+    var qcount = document.getElementById('qcount');
+    var index = [];
+
+    function buildIndex(){
+      index = [];
+      order.forEach(function(name){
+        var v = views[name];
+        if(!v) return;
+        Array.prototype.slice.call(v.querySelectorAll('main > article')).forEach(function(a){
+          /* index only the language actually being shown */
+          var lang = curLang();
+          var pane = a.querySelector(':scope > .l-' + lang) || a.querySelector(':scope > .l-en') || a;
+          var h1 = pane.querySelector('h1');
+          index.push({
+            section: name,
+            id: a.id,
+            title: h1 ? h1.textContent.trim() : a.id,
+            text: (pane.textContent || '').replace(/\s+/g, ' ').trim()
+          });
+        });
+      });
+    }
+
+    function esc(t){
+      return t.replace(/[&<>]/g, function(c){
+        return c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;';
+      });
+    }
+
+    function snippet(text, term){
+      var i = text.toLowerCase().indexOf(term);
+      if(i < 0) return esc(text.slice(0, 150)) + '&hellip;';
+      var start = Math.max(0, i - 70);
+      var cut = text.slice(start, i + term.length + 90);
+      var at = i - start;
+      return (start > 0 ? '&hellip;' : '') + esc(cut.slice(0, at)) +
+             '<b>' + esc(cut.slice(at, at + term.length)) + '</b>' +
+             esc(cut.slice(at + term.length)) + '&hellip;';
+    }
+
+    function runSearch(term){
+      term = term.trim().toLowerCase();
+      if(term.length < 2){
+        showSection(root.getAttribute('data-accent') || 'reflections', null, false, false);
+        return;
+      }
+      if(!index.length) buildIndex();
+      var hits = [];
+      index.forEach(function(e){
+        var lt = e.title.toLowerCase(), lx = e.text.toLowerCase();
+        if(lt.indexOf(term) >= 0) hits.push({e:e, rank:0});
+        else if(lx.indexOf(term) >= 0) hits.push({e:e, rank:1});
+      });
+      hits.sort(function(a,b){ return a.rank - b.rank; });
+
+      order.forEach(function(name){ if(views[name]) views[name].hidden = true; });
+      tabs.forEach(function(t){
+        t.setAttribute('aria-current','false');
+        t.setAttribute('aria-selected','false');
+      });
+      searchView.hidden = false;
+      var L = curLang();
+      var none = {en:'Nothing matches that.', es:'No hay nada que coincida.',
+                  pt:'Nada corresponde a isso.'}[L];
+      var one  = {en:' entry', es:' entrada', pt:' entrada'}[L];
+      var many = {en:' entries', es:' entradas', pt:' entradas'}[L];
+      qcount.textContent = hits.length === 0
+        ? none
+        : hits.length + (hits.length === 1 ? one : many);
+      qresults.innerHTML = hits.slice(0, 20).map(function(h){
+        return '<a class="qhit" href="#' + h.e.section + '/' + h.e.id + '"' +
+               ' data-xsec="' + h.e.section + '" data-xart="' + h.e.id + '">' +
+               '<span class="sec">' + LABEL[h.e.section] + '</span>' +
+               '<span class="t">' + esc(h.e.title) + '</span>' +
+               '<span class="snip">' + snippet(h.e.text, term) + '</span></a>';
+      }).join('');
+    }
+
+    if(q){
+      var timer = null;
+      q.addEventListener('input', function(){
+        clearTimeout(timer);
+        timer = setTimeout(function(){ runSearch(q.value); }, 120);
+      });
+      q.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){ q.value = ''; runSearch(''); q.blur(); }
+      });
+    }
 
     /* ---------------- initial route ---------------- */
     var parts = (location.hash || '').replace(/^#/, '').split('/');
@@ -3875,6 +4736,7 @@
       startArticle = null;
       try{ startSection = localStorage.getItem('marginalia-section') || 'reflections'; }catch(e){ startSection = 'reflections'; }
     }
-    showSection(startSection, startArticle, false);
+    showSection(startSection, startArticle, false, false);
+    buildIndex();
   })();
 </script>

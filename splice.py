@@ -1,4 +1,9 @@
-import re
+"""Insert generated Reflections into marginalia.html.
+
+APPENDS. Right for adding a new sermon, wrong for one already on the page,
+which it will duplicate. Trim ORDER in build_reflections.py to just the new
+sermons before running this.
+"""
 from pathlib import Path
 p = Path("marginalia.html"); s = p.read_text(encoding="utf-8")
 arts = Path("reflections_articles.html").read_text(encoding="utf-8").rstrip("\n")
