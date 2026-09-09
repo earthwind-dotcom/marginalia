@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """Convert sermon markdown from the vault into Marginalia <article> blocks."""
+import os
 import re, sys, html
 from pathlib import Path
 
-SRC = Path("/Users/irwinortega/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
-           "Personal Vault/02 Biblical Studies IG/Sermons")
+# The vault is not in this repo. Override with MARGINALIA_SERMONS if it moves.
+SRC = Path(os.environ.get(
+    "MARGINALIA_SERMONS",
+    Path.home() / "Library/Mobile Documents/iCloud~md~obsidian/Documents"
+                  "/Personal Vault/02 Biblical Studies IG/Sermons"))
 
 # (filename stem, article id, display passage for .apphead / toc)
 ORDER = [
