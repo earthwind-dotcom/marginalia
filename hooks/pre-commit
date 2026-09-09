@@ -1,0 +1,21 @@
+#!/bin/sh
+# Run the convention checks against the staged marginalia.html, not the working
+# tree, so what gets committed is what got checked.
+#
+# Active because the repo sets core.hooksPath=hooks. On a fresh clone run:
+#     git config core.hooksPath hooks
+#
+# To commit past a known failure: git commit --no-verify
+
+git diff --cached --name-only | grep -qx 'marginalia.html' || exit 0
+
+tmp=$(mktemp -t marginalia-staged) || exit 1
+trap 'rm -f "$tmp"' EXIT
+git show :marginalia.html > "$tmp" || exit 1
+
+if ! python3 check.py "$tmp"; then
+  echo
+  echo "check.py failed on the staged marginalia.html. Nothing was committed."
+  echo "Fix the problems above, or commit with --no-verify if you mean it."
+  exit 1
+fi
