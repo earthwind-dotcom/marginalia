@@ -3,7 +3,9 @@
   "private": true,
   "description": "Behaviour tests for marginalia.html. The site itself has no dependencies.",
   "scripts": {
-    "test": "node test_dom.js && python3 check.py marginalia.html && python3 test_check.py"
+    "test": "node test_dom.js && python3 check.py marginalia.html && python3 test_check.py && python3 test_site.py",
+    "build": "python3 build_site.py",
+    "serve": "python3 -m http.server -d dist 8000"
   },
   "devDependencies": {
     "jsdom": "^26.0.0"
