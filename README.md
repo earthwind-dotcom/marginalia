@@ -62,10 +62,21 @@ python3 -m http.server -d dist 8000                        # look at it
 `dist/` is a static site: `index.html` is the app as it is now, and every
 article also gets its own page at `/section/id/` holding only that article, its
 own title and description, canonical and Open Graph tags, and a drawn preview
-image. Plus `sitemap.xml`, `robots.txt` and `_headers`. It deploys as-is to
-Cloudflare Pages or Netlify. Without `MARGINALIA_URL` the build still runs but
-says it is leaving canonical, `og:url` and the sitemap out rather than inventing
-a host.
+image. Plus `sitemap.xml`, `robots.txt`, `.nojekyll` and `_headers`. Without
+`MARGINALIA_URL` the build still runs but says it is leaving canonical,
+`og:url` and the sitemap out rather than inventing a host.
+
+**Base path.** A GitHub project site is served from `/<repo>/`, not from a
+domain root, so set `MARGINALIA_BASE=marginalia` and every link and asset gets
+that prefix. Leave it unset for a custom domain at the root. `test_site.py`
+builds with a base path set, so a link that forgets the prefix fails the tests.
+
+**GitHub Pages.** `.github/workflows/deploy.yml` builds and publishes on every
+push to `main`. It is written and committed but not running yet: **Pages needs
+the repository to be public, or a paid plan.** Enabling it returns
+`Your current plan does not support GitHub Pages for this repository.`
+`_headers` is written for Cloudflare Pages and Netlify; GitHub Pages ignores it
+and serves without custom headers.
 
 **Viewers are pinned to a version.** Republishing does not change what someone
 you already sent the link to sees until the share pin is moved from the page's

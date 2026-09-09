@@ -18,6 +18,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 SITE = "https://marginalia.test"
+BASE = "/marginalia"   # exercise the project-site path too
 
 VOID = {"br", "img", "input", "meta", "link", "hr", "source", "area", "base",
         "col", "embed", "param", "track", "wbr"}
@@ -49,7 +50,7 @@ class Balance(HTMLParser):
 
 def main():
     with tempfile.TemporaryDirectory() as tmp:
-        env = dict(os.environ, MARGINALIA_URL=SITE)
+        env = dict(os.environ, MARGINALIA_URL=SITE, MARGINALIA_BASE=BASE)
         r = subprocess.run([sys.executable, str(HERE / "build_site.py")],
                            cwd=HERE, env=env, capture_output=True, text=True)
         if r.returncode != 0:
@@ -62,6 +63,10 @@ def main():
         app = out / "index.html"
 
         def exists(href):
+            if BASE:
+                if not href.startswith(BASE):
+                    return False          # a link that forgot the base path
+                href = href[len(BASE):] or "/"
             if href == "/":
                 return app.exists()
             p = out / href.strip("/")

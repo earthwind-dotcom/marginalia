@@ -26,6 +26,9 @@ from pathlib import Path
 SRC = Path("marginalia.html")
 OUT = Path("dist")
 SITE = os.environ.get("MARGINALIA_URL", "").rstrip("/")
+# A GitHub project site is served from /<repo>/, not the domain root, so every
+# link and asset needs that prefix. Empty for a custom domain at the root.
+BASE = "/" + os.environ.get("MARGINALIA_BASE", "").strip("/") if os.environ.get("MARGINALIA_BASE", "").strip("/") else ""
 
 SECTIONS = ["reflections", "encounter", "roots", "provenance", "wonder", "colophon"]
 TAB_ORDER = ["reflections", "encounter", "roots", "provenance", "colophon"]
@@ -148,9 +151,15 @@ def description_of(article_html, section):
 # --------------------------------------------------------------------------
 
 def url(section=None, art=None):
+    """A site-absolute link, base path included."""
     if section is None:
-        return "/"
-    return "/%s/" % section if art is None else "/%s/%s/" % (section, art)
+        return BASE + "/"
+    return BASE + ("/%s/" % section if art is None else "/%s/%s/" % (section, art))
+
+
+def asset(path):
+    """A site-absolute link to a built file, e.g. /og/roots/meek.png."""
+    return BASE + path
 
 
 def rewrite_links(fragment):
@@ -175,9 +184,9 @@ def static_nav(nav_html, current):
         as_link, nav_html)
 
     nav = re.sub(r'<div class="searchwrap">.*?</div>',
-                 '<div class="searchwrap"><a class="tab" href="/">'
+                 '<div class="searchwrap"><a class="tab" href="%s">'
                  '<span class="l-en">Search</span><span class="l-es">Buscar</span>'
-                 '<span class="l-pt">Buscar</span></a></div>',
+                 '<span class="l-pt">Buscar</span></a></div>' % url(),
                  nav, flags=re.S)
     return rewrite_links(nav)
 
@@ -185,7 +194,7 @@ def static_nav(nav_html, current):
 def static_masthead(masthead_html):
     return masthead_html.replace(
         '<span class="brand">Marginalia</span>',
-        '<a class="brand" href="/">Marginalia</a>'
+        '<a class="brand" href="%s">Marginalia</a>' % url()
     ).replace(
         '<button class="toggle" id="themeBtn" type="button">Dark</button>',
         '<button class="toggle" id="themeBtn" type="button">Dark</button>')
@@ -365,8 +374,10 @@ def main():
 
     if not SITE:
         print("note: MARGINALIA_URL is not set, so canonical and og:url are "
-              "omitted and image URLs stay relative.\n"
-              "      Set it when the domain exists.\n")
+              "omitted and no sitemap is written.\n"
+              "      Set it when the site has an address.\n")
+    if BASE:
+        print(f"base path: {BASE}\n")
 
     pages = []          # (path, url, changefreq, priority)
     images_made = 0
@@ -377,16 +388,16 @@ def main():
     app_body = source[source.index('<div class="masthead">'):source.index("<script>")]
     if og_image("Marginalia", "reflections", OUT / "og" / "site.png"):
         images_made += 1
-        site_img = "/og/site.png"
+        site_img = asset("/og/site.png")
     else:
         site_img = ""
     (OUT / "index.html").write_text(document(
         title="Marginalia",
         description=TAGLINE + " Sermons with their exegetical apparatus, word "
                               "studies, and text histories.",
-        canonical="/", body=app_body + "\n" + p["script"],
+        canonical=url(), body=app_body + "\n" + p["script"],
         style=p["style"], image=site_img, accent="reflections"), encoding="utf-8")
-    pages.append(("/", "weekly", "1.0"))
+    pages.append((url(), "weekly", "1.0"))
 
     # ---- one page per article --------------------------------------------
     for section in SECTIONS:
@@ -398,9 +409,10 @@ def main():
         for aid, art in arts:
             title = title_of(art)
             desc = description_of(art, section)
-            img = "/og/%s/%s.png" % (section, aid)
-            if og_image(title, section, OUT / img.lstrip("/")):
+            img_path = "og/%s/%s.png" % (section, aid)
+            if og_image(title, section, OUT / img_path):
                 images_made += 1
+                img = asset("/" + img_path)
             else:
                 img = site_img
 
@@ -450,6 +462,12 @@ def main():
     else:
         (OUT / "robots.txt").write_text("User-agent: *\nAllow: /\n", encoding="utf-8")
 
+    # GitHub Pages would otherwise treat this as a Jekyll site and drop
+    # anything whose name starts with an underscore.
+    (OUT / ".nojekyll").write_text("", encoding="utf-8")
+
+    # Cloudflare Pages and Netlify read this; GitHub Pages ignores it, and
+    # serves the site without custom headers.
     (OUT / "_headers").write_text(
         "/*\n"
         "  X-Content-Type-Options: nosniff\n"
