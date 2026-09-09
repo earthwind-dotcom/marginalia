@@ -757,11 +757,11 @@
 
 <nav class="sectionbar" aria-label="Sections">
   <div class="tabs" role="tablist">
-    <button class="tab" type="button" role="tab" data-section="reflections">Reflections</button>
-    <button class="tab" type="button" role="tab" data-section="encounter">Encounter</button>
-    <button class="tab" type="button" role="tab" data-section="roots">Roots</button>
-    <button class="tab" type="button" role="tab" data-section="provenance">Provenance</button>
-    <button class="tab" type="button" role="tab" data-section="colophon">Colophon</button>
+    <button class="tab" type="button" role="tab" id="tab-reflections" aria-controls="view-reflections" data-section="reflections">Reflections</button>
+    <button class="tab" type="button" role="tab" id="tab-encounter" aria-controls="view-encounter" data-section="encounter">Encounter</button>
+    <button class="tab" type="button" role="tab" id="tab-roots" aria-controls="view-roots" data-section="roots">Roots</button>
+    <button class="tab" type="button" role="tab" id="tab-provenance" aria-controls="view-provenance" data-section="provenance">Provenance</button>
+    <button class="tab" type="button" role="tab" id="tab-colophon" aria-controls="view-colophon" data-section="colophon">Colophon</button>
   </div>
   <div class="searchwrap">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
@@ -4595,8 +4595,15 @@
       if(v){
         views[name] = v;
         swap[name] = makeSwapper(v);
-        var m = v.querySelector('main');
-        if(m){ m.setAttribute('role','tabpanel'); m.setAttribute('aria-live','polite'); }
+        /* The panel is the view, not the <main> inside it. This used to also
+           set aria-live="polite" here, which made a screen reader read the
+           whole article aloud on every swap, on top of the heading focus
+           below. The focus move is the announcement. */
+        var tabFor = document.getElementById('tab-' + name);
+        if(tabFor){
+          v.setAttribute('role', 'tabpanel');
+          v.setAttribute('aria-labelledby', 'tab-' + name);
+        }
       }
     });
 
@@ -4615,8 +4622,10 @@
         if(views[name]) views[name].hidden = name !== section;
       });
       tabs.forEach(function(t){
-        t.setAttribute('aria-current', t.dataset.section === section ? 'true' : 'false');
-        t.setAttribute('aria-selected', t.dataset.section === section ? 'true' : 'false');
+        var on = t.dataset.section === section;
+        t.setAttribute('aria-current', on ? 'true' : 'false');
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
       });
       var id = swap[section](article, focus);
       try{ localStorage.setItem('marginalia-section', section); }catch(e){}
@@ -4624,8 +4633,21 @@
       setHash(section, id);
     }
 
-    tabs.forEach(function(t){
+    tabs.forEach(function(t, i){
       t.addEventListener('click', function(){ showSection(t.dataset.section, null, true, true); });
+      /* role="tab" promises arrow-key navigation, so implement it: the row is
+         a single tab stop and Left/Right/Home/End move within it. */
+      t.addEventListener('keydown', function(e){
+        var to = null;
+        if(e.key === 'ArrowRight' || e.key === 'ArrowDown') to = (i + 1) % tabs.length;
+        else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') to = (i - 1 + tabs.length) % tabs.length;
+        else if(e.key === 'Home') to = 0;
+        else if(e.key === 'End') to = tabs.length - 1;
+        if(to === null) return;
+        e.preventDefault();
+        tabs[to].focus();
+        showSection(tabs[to].dataset.section, null, true, false);
+      });
     });
 
     /* ---------------- cross-section links ---------------- */
@@ -4642,6 +4664,22 @@
     var qcount = document.getElementById('qcount');
     var index = [];
 
+    /* Readers type "corazon", not "coraz\u00f3n", and most of the Spanish and
+       Portuguese on this page is written with accented entities. Fold accents
+       away before matching. One character in, one character out, so an offset
+       into the folded string is still valid in the original and snippet() can
+       slice the real text. */
+    function fold(str){
+      var out = '', i, c, f;
+      for(i = 0; i < str.length; i++){
+        c = str.charAt(i);
+        f = c.normalize ? c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+                        : c.toLowerCase();
+        out += (f.length === 1) ? f : c.toLowerCase().slice(0, 1) || c;
+      }
+      return out;
+    }
+
     function buildIndex(){
       index = [];
       order.forEach(function(name){
@@ -4652,11 +4690,15 @@
           var lang = curLang();
           var pane = a.querySelector(':scope > .l-' + lang) || a.querySelector(':scope > .l-en') || a;
           var h1 = pane.querySelector('h1');
+          var title = h1 ? h1.textContent.trim() : a.id;
+          var text = (pane.textContent || '').replace(/\s+/g, ' ').trim();
           index.push({
             section: name,
             id: a.id,
-            title: h1 ? h1.textContent.trim() : a.id,
-            text: (pane.textContent || '').replace(/\s+/g, ' ').trim()
+            title: title,
+            text: text,
+            ftitle: fold(title),
+            ftext: fold(text)
           });
         });
       });
@@ -4668,8 +4710,8 @@
       });
     }
 
-    function snippet(text, term){
-      var i = text.toLowerCase().indexOf(term);
+    function snippet(text, ftext, term){
+      var i = ftext.indexOf(term);
       if(i < 0) return esc(text.slice(0, 150)) + '&hellip;';
       var start = Math.max(0, i - 70);
       var cut = text.slice(start, i + term.length + 90);
@@ -4680,7 +4722,7 @@
     }
 
     function runSearch(term){
-      term = term.trim().toLowerCase();
+      term = fold(term.trim());
       if(term.length < 2){
         showSection(root.getAttribute('data-accent') || 'reflections', null, false, false);
         return;
@@ -4688,9 +4730,8 @@
       if(!index.length) buildIndex();
       var hits = [];
       index.forEach(function(e){
-        var lt = e.title.toLowerCase(), lx = e.text.toLowerCase();
-        if(lt.indexOf(term) >= 0) hits.push({e:e, rank:0});
-        else if(lx.indexOf(term) >= 0) hits.push({e:e, rank:1});
+        if(e.ftitle.indexOf(term) >= 0) hits.push({e:e, rank:0});
+        else if(e.ftext.indexOf(term) >= 0) hits.push({e:e, rank:1});
       });
       hits.sort(function(a,b){ return a.rank - b.rank; });
 
@@ -4698,6 +4739,7 @@
       tabs.forEach(function(t){
         t.setAttribute('aria-current','false');
         t.setAttribute('aria-selected','false');
+        t.tabIndex = 0;
       });
       searchView.hidden = false;
       var L = curLang();
@@ -4713,7 +4755,7 @@
                ' data-xsec="' + h.e.section + '" data-xart="' + h.e.id + '">' +
                '<span class="sec">' + LABEL[h.e.section] + '</span>' +
                '<span class="t">' + esc(h.e.title) + '</span>' +
-               '<span class="snip">' + snippet(h.e.text, term) + '</span></a>';
+               '<span class="snip">' + snippet(h.e.text, h.e.ftext, term) + '</span></a>';
       }).join('');
     }
 

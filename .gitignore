@@ -1,2 +1,4 @@
 reflections_articles.html
 reflections_toc.html
+node_modules/
+package-lock.json

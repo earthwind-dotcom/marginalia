@@ -17,3 +17,13 @@ jobs:
 
       - name: Test that the checks actually catch violations
         run: python3 test_check.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install test dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Drive the page in a DOM
+        run: node test_dom.js

@@ -1,0 +1,11 @@
+{
+  "name": "marginalia",
+  "private": true,
+  "description": "Behaviour tests for marginalia.html. The site itself has no dependencies.",
+  "scripts": {
+    "test": "node test_dom.js && python3 check.py marginalia.html && python3 test_check.py"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}
