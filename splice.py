@@ -47,8 +47,30 @@ def split_elements(html, open_re, close_tag):
     return out
 
 
+def translated(fragment):
+    """True if this element carries Spanish or Portuguese of its own."""
+    return ('class="l-es"' in fragment) or ('class="l-pt"' in fragment)
+
+
 def merge(region, generated, open_re, close_tag, anchor, sep, label):
     existing = dict(split_elements(region, open_re, close_tag))
+
+    # The sermon markdown in the vault is English only, so anything generated
+    # from it is English only. Three Reflections (meek, dust, psalm88) were
+    # written before the generator existed and are the only ones translated
+    # into Spanish and Portuguese, which is exactly why ORDER starts at the
+    # fourth. Adding one of them to ORDER would look like tidying up and would
+    # silently delete two translations, so refuse instead of trusting a comment.
+    losses = [k for k, new_html in generated
+              if k in existing and translated(existing[k]) and not translated(new_html)]
+    if losses and "--allow-translation-loss" not in sys.argv:
+        sys.exit(
+            "refusing to overwrite translated %s: %s\n"
+            "These are translated on the page and the generator produces English only,\n"
+            "so this would delete the Spanish and Portuguese. Remove them from ORDER in\n"
+            "build_reflections.py, or pass --allow-translation-loss if you truly mean it."
+            % (label, ", ".join(losses)))
+
     keys = [k for k, _ in generated]
     replaced, added = [], []
     prev = None  # element html of the previous generated entry, as now placed

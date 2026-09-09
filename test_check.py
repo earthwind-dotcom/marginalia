@@ -62,6 +62,8 @@ CASES = [
      strip_xlate),
     ("missing-view", "a section that has gone missing",
      lambda s: s.replace('id="view-wonder"', 'id="view-gone"', 1)),
+    ("translation-lost", "a translated article quietly reduced to English",
+     drop_translated_panes),
 ]
 
 

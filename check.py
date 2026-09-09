@@ -6,8 +6,9 @@ violation so a pre-commit hook can stop the commit.
 
     python3 check.py [file]
 """
-import sys
+import json
 import re
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -206,6 +207,33 @@ for aid, meta in sorted(doc.articles.items()):
 for s in SECTIONS:
     if s not in doc.views:
         fail("missing-view", f"#view-{s} is gone")
+
+# 10 -- a translation is never lost silently ---------------------------------
+# check.py cannot tell a never-translated entry from one whose translation was
+# just deleted, and the generator adds an "not translated yet" notice that makes
+# the loss look deliberate. So the coverage is written down and compared.
+MANIFEST = Path(__file__).parent / "translations.json"
+
+coverage = {aid: sorted(meta["langs"] | {"en"}) for aid, meta in doc.articles.items()}
+
+if "--update-translations" in sys.argv:
+    MANIFEST.write_text(json.dumps(coverage, indent=2, sort_keys=True) + "\n",
+                        encoding="utf-8")
+    print(f"wrote {MANIFEST.name}: "
+          f"{sum(1 for v in coverage.values() if len(v) > 1)} translated of {len(coverage)}")
+    sys.exit(0)
+
+if MANIFEST.exists():
+    recorded = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    for aid, langs in sorted(recorded.items()):
+        if aid not in coverage:
+            fail("translation-lost", f'"{aid}" was on the page and is gone')
+            continue
+        missing = set(langs) - set(coverage[aid])
+        if missing:
+            fail("translation-lost",
+                 f'"{aid}" has lost its {"/".join(sorted(missing))} translation; '
+                 f'if that was on purpose, rerun with --update-translations')
 
 # -- report -----------------------------------------------------------------
 if failures:
