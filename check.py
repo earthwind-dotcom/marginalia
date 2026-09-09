@@ -192,11 +192,15 @@ for aid, meta in sorted(doc.articles.items()):
         fail("lang-blank", f'"{aid}" wraps its only copy in .l-en, so it goes blank on a language switch')
 
 # 8 -- partial translation is announced, not silent -------------------------
+# An article with no .l-es / .l-pt pane is English-only, whether or not its
+# English copy is wrapped in .l-en. Either way the reader who switched language
+# is owed the notice. build_reflections.py regressed exactly this in 12 entries.
 for aid, meta in sorted(doc.articles.items()):
-    langs = meta["langs"]
-    if langs and {"es", "pt"} - langs and not meta["xlate"]:
-        missing = ",".join(sorted({"es", "pt"} - langs))
-        fail("xlate-notice", f'"{aid}" has no .l-{missing} block and no .xlate notice saying so')
+    missing = {"es", "pt"} - meta["langs"]
+    if missing and not meta["xlate"]:
+        fail("xlate-notice",
+             f'"{aid}" has no .l-{"/.l-".join(sorted(missing))} pane and no .xlate '
+             f'notice, so a reader who switches language gets English with no explanation')
 
 # 9 -- the six sections all exist -------------------------------------------
 for s in SECTIONS:

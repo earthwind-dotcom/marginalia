@@ -14,3 +14,6 @@ jobs:
           python-version: '3.12'
       - name: Check marginalia.html against the conventions
         run: python3 check.py marginalia.html
+
+      - name: Test that the checks actually catch violations
+        run: python3 test_check.py

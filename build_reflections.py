@@ -60,6 +60,17 @@ XREF = {
 }
 
 # Every entry carries a revision date.
+# Entries with a real .l-es / .l-pt translation. Anything not listed here is
+# English-only and gets the .xlate notice, so a reader who switches language is
+# told why the text stayed in English instead of just seeing English.
+TRANSLATED = set()
+
+XLATE = ('        <p class="xlate">'
+         '<span class="l-es">Esta pieza a&uacute;n no est&aacute; traducida. '
+         'El texto que sigue est&aacute; en ingl&eacute;s.</span>'
+         '<span class="l-pt">Esta pe&ccedil;a ainda n&atilde;o foi traduzida. '
+         'O texto a seguir est&aacute; em ingl&ecirc;s.</span></p>')
+
 REVISED = ("Revised 6 September 2026",
            "Revisado el 6 de septiembre de 2026",
            "Revisado em 6 de setembro de 2026")
@@ -160,8 +171,10 @@ def build(stem, art_id, passage, num):
     parts = re.split(r"^\*\*(\d+)\s*·\s*(.+?)\*\*\s*$", manu, flags=re.M)
     movements = [(parts[i], parts[i + 1], parts[i + 2]) for i in range(1, len(parts), 3)]
 
-    out = [f'      <article id="{art_id}" hidden>',
-           f'        <p class="eyebrow">Reflection {num:02d} &nbsp;&middot;&nbsp; <b>{esc(passage)}</b></p>',
+    out = [f'      <article id="{art_id}" hidden>']
+    if art_id not in TRANSLATED:
+        out.append(XLATE)
+    out += [f'        <p class="eyebrow">Reflection {num:02d} &nbsp;&middot;&nbsp; <b>{esc(passage)}</b></p>',
            f'        <h1>{inline(title)}</h1>']
     if fm.get("big-idea"):
         out.append(f'        <p class="epigraph">{inline(fm["big-idea"])}</p>')
@@ -177,6 +190,8 @@ def build(stem, art_id, passage, num):
             + "".join(f'<span class="l-{c}">{t}</span>'
                       for c, t in zip(("en", "es", "pt"), REVISED))
             + '</p>',
+            '',
+            '',
             '        <div class="body">']
 
     for n, head, chunk in movements:
